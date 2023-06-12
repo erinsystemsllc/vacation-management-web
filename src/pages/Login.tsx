@@ -64,7 +64,7 @@ export default function Login() {
       <Flex justify="center" align="center" w="100vw" h="100vh">
         <Flex
           bg="RGBA(0, 0, 0, 0.10)"
-          w="30%"
+          w={{xl: '30%', lg: '40%', md: '50%', sm: '30em'}}
           h="60%"
           rounded="md"
           justify="center"
