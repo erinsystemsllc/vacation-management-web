@@ -16,7 +16,7 @@ export enum Style {
 enum loginErr {
   error = "error",
   email = "There is no such email",
-  passLen = "password must be greater than 8",
+  passLen = "password must be greater than 8 characters",
   passMatch = "password do not match",
 }
 
