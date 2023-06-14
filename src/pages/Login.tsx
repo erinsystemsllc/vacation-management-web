@@ -1,61 +1,16 @@
 // chack style
-import { Flex, Box, Button, Text, useToast, InputRightElement } from "@chakra-ui/react";
+import { Flex, Box, Button, Text, InputRightElement } from "@chakra-ui/react";
 import { FormControl, FormErrorMessage, Input, InputGroup } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import style from "../styles/Login.module.css";
+import { Style } from "../utils/data/globalData";
 
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-
-export enum Style {
-  placeHolder = "#6d6d6d",
-  mainColor = "#317334",
-  headerColor = "#30804b",
-}
-
-enum loginErr {
-  error = "error",
-  email = "There is no such email",
-  passLen = "password must be greater than 8 characters",
-  passMatch = "password do not match",
-}
+import useLoginForm from "../utils/hooks/useLoginForm";
 
 export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toast = useToast();
-  const navigate = useNavigate()
-
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const tempEmail = "t.erdemee@gmail.com";
-    const tempPass = "123456789";
-    const email = (e.currentTarget[0] as HTMLInputElement).value;
-    const password = (e.currentTarget[1] as HTMLInputElement).value;
-
-    if (email !== tempEmail) {
-      toast({
-        title: loginErr.email,
-        status: loginErr.error,
-        isClosable: true,
-      });
-    } else if (password.length <= 8) {
-      toast({
-        title: loginErr.passLen,
-        status: loginErr.error,
-        isClosable: true,
-      });
-    } else if (password !== tempPass) {
-      toast({
-        title: loginErr.passMatch,
-        status: loginErr.error,
-        isClosable: true,
-      });
-    }
-    else{
-      navigate('/')
-    }
-  };
+  const { handleLogin } = useLoginForm();
 
   return (
     <>
