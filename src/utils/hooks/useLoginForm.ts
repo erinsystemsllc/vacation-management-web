@@ -4,7 +4,7 @@ import { loginErr } from "../data/globalData";
 
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import axios, {  AxiosError } from "axios";
 
 
 export default function useLoginForm() {
@@ -26,7 +26,7 @@ export default function useLoginForm() {
       })
       navigate('/')
     },
-    onError: (error) => {
+    onError: (error: AxiosError<{message: string}>) => {
       toast({
         title: error?.response?.data.message,
         status: loginErr.error,
