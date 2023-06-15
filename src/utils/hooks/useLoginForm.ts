@@ -1,4 +1,4 @@
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { loginErr } from "../data/globalData";
 
@@ -7,15 +7,6 @@ import { useMutation } from "@tanstack/react-query";
 import axios, {  AxiosError } from "axios";
 
 
-interface Employee{
-  "email": string,
-  "firstName": string,
-  "firstWorkDay": string,
-  "lastName": string,
-  "password": string,
-  "position": string,
-  "team": string,
-}
 
 export default function useLoginForm() {
   const navigate = useNavigate();
