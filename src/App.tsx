@@ -5,14 +5,15 @@ import Home from "./pages/Home"
 
 // components
 import Navbar from "./components/Navbar"
+import { Box } from "@chakra-ui/react"
 
 export default function App() {
   return (
-    <div>
+    <Box w="100vw" h="100vh" overflow="hidden">
         <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
       </Routes>
-    </div>
+    </Box>
   )
 }

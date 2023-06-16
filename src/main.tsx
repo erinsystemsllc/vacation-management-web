@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 
 // css framework
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import theme from "./components/themes/theme.ts";
+import theme from "./utils/themes/theme.ts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
