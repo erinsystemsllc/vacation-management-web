@@ -7,5 +7,6 @@ export enum Style {
 export enum loginErr {
     error = "error",
     success = "success",
+    loginUrl = "http://localhost:8000/api/auth/login"
   }
   
