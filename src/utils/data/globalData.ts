@@ -4,9 +4,10 @@ export enum Style {
     headerColor = "#30804b",
   }
   
-export enum loginErr {
+export enum LoginAPI {
     error = "error",
     success = "success",
-    loginUrl = "http://localhost:8000/api/auth/login"
+    loginUrl = "http://localhost:8000/api/auth/login",
+    randomErr = "An error occurred"
   }
   

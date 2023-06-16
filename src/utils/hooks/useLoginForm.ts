@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import { loginErr } from "../data/globalData";
+import { LoginAPI } from "../data/globalData";
 
 import { useMutation } from "@tanstack/react-query";
 
@@ -16,7 +16,7 @@ export default function useLoginForm() {
 
   const loginMutation = useMutation({
     mutationFn: async (formData: LoginForm) => {
-      const response = await fetch(loginErr.loginUrl, {
+      const response = await fetch(LoginAPI.loginUrl, {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -33,16 +33,16 @@ export default function useLoginForm() {
       sessionStorage.setItem("token", loggedIn);
       toast({
         title: "Logged in Successfully",
-        status: loginErr.success,
+        status: LoginAPI.success,
         isClosable: true,
       });
       navigate("/");
     },
     onError: (error: Error) => {
-      const errorMessage = error.message || "An error occurred"
+      const errorMessage = error.message || LoginAPI.randomErr;
       toast({
         title: errorMessage,
-        status: loginErr.error,
+        status: LoginAPI.error,
         isClosable: true,
       });
     },
