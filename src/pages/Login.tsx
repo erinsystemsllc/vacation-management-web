@@ -10,7 +10,7 @@ import useLoginForm from "../utils/hooks/useLoginForm";
 
 export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
-  const { handleLogin } = useLoginForm();
+  const { handleLogin, loginMutation } = useLoginForm();
 
   return (
     <>
@@ -83,6 +83,7 @@ export default function Login() {
             </FormControl>
 
             <Button
+              isLoading={loginMutation.isLoading}
               w="40%"
               fontSize="md"
               p="1.5rem"

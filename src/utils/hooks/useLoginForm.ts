@@ -45,5 +45,5 @@ export default function useLoginForm() {
     loginMutation.mutate();
   };
 
-  return { handleLogin };
+  return { handleLogin, loginMutation };
 }
