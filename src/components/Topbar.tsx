@@ -1,3 +1,4 @@
+
 import {
   Box,
   Flex,
@@ -10,12 +11,24 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
-enum Pro {
-  name = "С.Нямхүү",
-  position = "Эрхлэгч",
-}
 
 export default function Navbar() {
+
+  interface Profile{
+    email: string,
+    firstName: string,
+    firstWorkDay: string,
+    lastName: string,
+    password: string,
+    position: string,
+    team: string,
+    role: string,
+  }
+  
+  const info: Profile | null = sessionStorage.getItem('token') ? JSON.parse(sessionStorage.getItem('token') as string) : null;
+const firstLetter = info?.firstName?.slice(0, 1);
+const fullName = firstLetter ? firstLetter + "." + info?.lastName : "";
+  
   return (
     <Flex
       w="100%"
@@ -24,16 +37,11 @@ export default function Navbar() {
       align="center"
       px="2rem"
     >
-      <Flex justify="center" align="center">
-        <Image src="src/assets/erin-logo.png" w="4rem" h="4rem" />
-        <Text fontWeight="extrabold" fontSize="24px" ml="1rem">
-          Erin Systems
-        </Text>
-      </Flex>
+        <Image src="src/assets/erin1bless.png" w="14%"/>
       <Flex align="center">
-        <Box w="5rem">
-          <Text noOfLines={1}>{Pro.name}</Text>
-          <Text color="#4D4D4D">{Pro.position}</Text>
+        <Box w="5.1rem">
+          <Text noOfLines={1}>{fullName}</Text>
+          <Text textAlign="center" color="#4D4D4D">{info?.role}</Text>
         </Box>
         <Menu>
           <MenuButton>
@@ -48,7 +56,7 @@ export default function Navbar() {
               minW="0"
               w="5rem"
             >
-              <MenuItem bg="white">Гарах</MenuItem>
+              <MenuItem bg="white" onClick={()=>sessionStorage.removeItem('token')}>Гарах</MenuItem>
             </MenuList>
           </Flex>
         </Menu>
