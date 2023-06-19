@@ -3,10 +3,10 @@ import { Spinner, Flex } from "@chakra-ui/react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
+// components
+import Navbar from "./components/Topbar"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-
-import Navbar from "./components/Navbar";
 
 export default function App() {
   const navigate = useNavigate();
