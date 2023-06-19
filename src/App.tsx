@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 // components
+import { Box } from "@chakra-ui/react"
 import Navbar from "./components/Topbar"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -21,6 +22,8 @@ export default function App() {
   const { pathname } = useLocation();
 
   return (
+    <Box w="100vw" h="100vh" overflow="hidden">
+        <Navbar/>
     <div>
       {pathname === "/login" ? null : token === null ? null : <Navbar />}
       <Routes>
@@ -50,6 +53,8 @@ export default function App() {
         />
         <Route path="/login" element={<Login />} />
       </Routes>
+    </Box>
+  )
     </div>
   );
 }
