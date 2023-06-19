@@ -1,12 +1,11 @@
 // chack style
-import { Flex, Box, Button, Text, InputRightElement } from "@chakra-ui/react";
+import { Flex, Box,Grid, Button, Text, InputRightElement } from "@chakra-ui/react";
 import { FormControl, FormErrorMessage, Input, InputGroup } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import style from "../styles/Login.module.css";
-import { Style } from "../utils/data/globalData";
+import { Style } from "../Data/globalData";
 
 import { useState } from "react";
-import useLoginForm from "../utils/hooks/useLoginForm";
+import useLoginForm from "../hooks/useLoginForm";
 
 export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +23,16 @@ export default function Login() {
           align="center"
           shadow="lg"
         >
-          <form
-            className={style.form}
+          <Box
+            as="form"
+            w="100%"
+            h="100%"
+            display="grid"
+            justifyContent="center"
+            alignItems="center"
+            justifyItems="center"
+            gridTemplateRows="1fr 5rem 5rem 1fr"
+            gridTemplateColumns="65%"
             onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleLogin(e)}
           >
             <Box
@@ -95,7 +102,7 @@ export default function Login() {
             >
               Нэвтрэх
             </Button>
-          </form>
+          </Box>
         </Flex>
       </Flex>
     </>

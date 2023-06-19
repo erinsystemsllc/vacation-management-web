@@ -10,10 +10,12 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 
-export default function Navbar() {
+export default function Topbar() {
 
+  const navigate = useNavigate();
   interface Profile{
     email: string,
     firstName: string,
@@ -56,7 +58,7 @@ const fullName = firstLetter ? firstLetter + "." + info?.lastName : "";
               minW="0"
               w="5rem"
             >
-              <MenuItem bg="white" onClick={()=>sessionStorage.removeItem('token')}>Гарах</MenuItem>
+              <MenuItem bg="white" onClick={()=>{sessionStorage.removeItem('token'); navigate('/login')}}>Гарах</MenuItem>
             </MenuList>
           </Flex>
         </Menu>

@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 // css framework
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import theme from "./utils/themes/theme.ts";
+import theme from "./themes/theme.ts";
 
 // react query
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
