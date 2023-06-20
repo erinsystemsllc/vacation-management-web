@@ -28,7 +28,7 @@ interface Top_Titles{
 export enum LoginAlert{
     error="error",
     success="success",
-    loginUrl="http://localhost:8000/api/auth/login",
+    loginUrl="http://localhost:8000/api/user/login",
     randomErr="An error occurred"
 }
 

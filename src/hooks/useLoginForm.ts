@@ -24,12 +24,11 @@ export default function useLoginForm() {
         },
       });
       const data = await response.json();
-
       if(data.status === "UNAUTHORIZED") throw new Error(data.errorMessage)
       return data;
     },
     onSuccess: (data) => {
-      const loggedIn = JSON.stringify(data.user);
+      const loggedIn = JSON.stringify(data.mongoUser);
       sessionStorage.setItem("token", loggedIn);
       toast({
         title: "Logged in Successfully",
