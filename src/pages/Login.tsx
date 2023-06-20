@@ -7,6 +7,8 @@ import { useState } from "react";
 import useLoginForm from "../hooks/useLoginForm";
 import { FormInput, Submit, Form } from "../themes/customComponents";
 
+import { LoginPage } from "../Data/globalData";
+
 export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
   const { handleLogin, loginMutation } = useLoginForm();
@@ -15,7 +17,7 @@ export default function Login() {
     <>
       <Flex justify="center" align="center" w="100vw" h="100vh">
         <Flex
-          bg="lform"
+          bg="loginForm"
           w={{ xl: "30%", lg: "40%", md: "50%", sm: "30em" }}
           h="60%"
           rounded="md"
@@ -30,10 +32,10 @@ export default function Login() {
             <Box
               borderBottom="14px solid"
               fontWeight="bold"
-              borderColor="lheader"
+              borderColor="loginHeader"
             >
-              <Text fontSize="5xl" color="lheader" display="inline">
-                Erin
+              <Text fontSize="5xl" color="loginHeader" display="inline">
+                {LoginPage.title}
               </Text>
               <Text
                 fontSize="5xl"
@@ -41,7 +43,7 @@ export default function Login() {
                 color="black"
                 display="inline"
               >
-                Systems
+                {LoginPage.subTitle}
               </Text>
             </Box>
 
@@ -73,7 +75,7 @@ export default function Login() {
               </InputGroup>
             </FormControl>
             <Submit isLoading={loginMutation.isLoading} type="submit">
-              Нэвтрэх
+              {LoginPage.submit}
             </Submit>
           </Form>
         </Flex>

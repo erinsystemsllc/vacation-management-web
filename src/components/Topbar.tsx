@@ -40,7 +40,7 @@ export default function Topbar() {
       <Flex align="center">
         <Box w="6rem">
           <Text noOfLines={1}>{fullName}</Text>
-          <Text textAlign="center" color="hrole">
+          <Text textAlign="center" color="headerRole">
             {info?.role}
           </Text>
         </Box>

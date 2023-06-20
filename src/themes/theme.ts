@@ -9,14 +9,14 @@ const config: ThemeConfig = {
 const theme = extendTheme({ 
   config,
   colors: {
-    lformplace: "#6d6d6d",
-    lheader: "#30804b",
-    lsubmit: "#317334",
-    lform: "RGBA(0, 0, 0, 0.10)",
-    hrole: "#4D4D4D",
-    pheader: "#386641",
-    mainbg: "#a7c957",
-    mainclr: "#16400c"
+    loginFormPlace: "#6d6d6d",
+    loginHeader: "#30804b",
+    loginSubmit: "#317334",
+    loginForm: "RGBA(0, 0, 0, 0.10)",
+    headerRole: "#4D4D4D",
+    PersonalHeader: "#386641",
+    mainBackground: "#a7c957",
+    mainColor: "#16400c"
   },
   sizes: {
     icon: "44px",

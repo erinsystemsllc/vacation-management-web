@@ -8,12 +8,12 @@ export default function Personal() {
 
   return (
     <Flex flexDirection="column" w="100%" px="2%" py="0.6%">
-      <Text fontSize="28px" as="b" color="pheader">Хувийн мэдээлэл</Text>
+      <Text fontSize="28px" as="b" color="personalHeader">Хувийн мэдээлэл</Text>
       <SimpleGrid columns={2} mt="2rem">
         <SimpleGrid columns={2} spacingY="14px" templateColumns="0.4fr 1fr">
-          <Text as="b">{PersonalInfo.fname}</Text>
+          <Text as="b">{PersonalInfo.firstName}</Text>
           <Text>{info?.firstName}</Text>
-          <Text as="b">{PersonalInfo.lname}</Text>
+          <Text as="b">{PersonalInfo.lastName}</Text>
           <Text>{info?.lastName}</Text>
           <Text as="b">{PersonalInfo.email}</Text>
           <Text>{info?.email}</Text>

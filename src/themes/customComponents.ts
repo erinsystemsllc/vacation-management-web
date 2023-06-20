@@ -2,9 +2,9 @@ import { Button, Input, MenuList, chakra, Flex } from "@chakra-ui/react";
 
 export const FormInput = chakra(Input, {
     baseStyle: {
-        color: "lformplace",
+        color: "loginFormPlace",
         _placeholder: {
-            color: "lformplace",
+            color: "loginFormPlace",
         },
         borderBottom: "5px solid",
         p:"12px"
@@ -16,7 +16,7 @@ export const Submit = chakra(Button, {
         w: "40%",
         fontSize: "md",
         p: "1.5rem",
-        bg: "lsubmit",
+        bg: "loginSubmit",
         rounded: "xl",
         color: "white",
         _hover: { 
