@@ -7,7 +7,7 @@ export default function Personal() {
   const info = useInfo()
 
   return (
-    <Flex flexDirection="column" w="100%" px="2%" py="0.6%">
+    <Flex flexDirection="column" w="85vw" px="2%" py="1.3%">
       <Text fontSize="28px" as="b" color="personalHeader">Хувийн мэдээлэл</Text>
       <SimpleGrid columns={2} mt="2rem">
         <SimpleGrid columns={2} spacingY="14px" templateColumns="0.4fr 1fr">

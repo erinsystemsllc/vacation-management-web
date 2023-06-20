@@ -14,7 +14,7 @@ const theme = extendTheme({
     loginSubmit: "#317334",
     loginForm: "RGBA(0, 0, 0, 0.10)",
     headerRole: "#4D4D4D",
-    PersonalHeader: "#386641",
+    personalHeader: "#386641",
     mainBackground: "#a7c957",
     mainColor: "#16400c"
   },

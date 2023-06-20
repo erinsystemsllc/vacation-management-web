@@ -33,9 +33,7 @@ export default function Topbar() {
   const fullName = firstLetter ? firstLetter + "." + info?.lastName : "";
 
   return (
-    <HeaderContainer
-    justify="space-between"
-    >
+    <HeaderContainer justify="space-between">
       <Image src="src/assets/erin1bless.png" w="11%" />
       <Flex align="center">
         <Box w="6rem">
