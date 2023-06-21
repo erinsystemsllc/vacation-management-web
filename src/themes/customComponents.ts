@@ -59,3 +59,13 @@ export const HeaderContainer = chakra(Flex, {
         px: "2rem",
     }
 })
+
+export const SideBtn = chakra(Button, {
+    baseStyle: {
+        _active:{ bg: "mainBackground", color: "mainColor" },
+        bg: "white",
+        w: "100%",
+        h: "6%",
+        rounded: "none"
+    }
+})
