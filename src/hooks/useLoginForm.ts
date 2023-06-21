@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import { LoginAlert } from "../Data/globalData";
+import { LoginRequest } from "../Data/globalData";
 
 import { useMutation } from "@tanstack/react-query";
 
@@ -16,7 +16,7 @@ export default function useLoginForm() {
 
   const loginMutation = useMutation({
     mutationFn: async (formData: LoginForm) => {
-      const response = await fetch(LoginAlert.loginUrl, {
+      const response = await fetch(LoginRequest.loginUrl, {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -24,7 +24,8 @@ export default function useLoginForm() {
         },
       });
       const data = await response.json();
-      if(data.status === "UNAUTHORIZED") throw new Error(data.errorMessage)
+      console.log(data)
+      if(!data.mongoUser) throw new Error(data.message)
       return data;
     },
     onSuccess: (data) => {
@@ -32,16 +33,16 @@ export default function useLoginForm() {
       sessionStorage.setItem("token", loggedIn);
       toast({
         title: "Logged in Successfully",
-        status: LoginAlert.success,
+        status: LoginRequest.success,
         isClosable: true,
       });
       navigate("/");
     },
     onError: (error: Error) => {
-      const errorMessage = error.message || LoginAlert.randomErr;
+      const errorMessage = error.message || LoginRequest.unsupportedError;
       toast({
         title: errorMessage,
-        status: LoginAlert.error,
+        status: LoginRequest.error,
         isClosable: true,
       });
     },
