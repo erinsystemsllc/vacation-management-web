@@ -24,16 +24,6 @@ interface Top_Titles{
 }
 
 
-
-// export enum LoginAlert{
-//     error="error",
-//     success="success",
-//     loginUrl="http://localhost:8000/api/user/login",
-//     randomErr="An error occurred"
-// }
-export enum Response { 
-
-}
 export interface RequestModel{
     error:"error" | "success" | "info" | "warning" | "loading" | undefined,
     success:"error" | "success" | "info" | "warning" | "loading" | undefined,
