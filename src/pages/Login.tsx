@@ -1,12 +1,13 @@
 // chack style
-import { Flex, Box, Button, Text, InputRightElement } from "@chakra-ui/react";
-import { FormControl, FormErrorMessage, Input, InputGroup } from "@chakra-ui/react";
+import { Flex, Box, Text, InputRightElement } from "@chakra-ui/react";
+import { FormControl, InputGroup } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import style from "../styles/Login.module.css";
-import { Style } from "../utils/data/globalData";
 
 import { useState } from "react";
-import useLoginForm from "../utils/hooks/useLoginForm";
+import useLoginForm from "../hooks/useLoginForm";
+import { FormInput, Submit, Form } from "../themes/customComponents";
+
+import { LoginPage } from "../Data/globalData";
 
 export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Login() {
     <>
       <Flex justify="center" align="center" w="100vw" h="100vh">
         <Flex
-          bg="RGBA(0, 0, 0, 0.10)"
+          bg="loginForm"
           w={{ xl: "30%", lg: "40%", md: "50%", sm: "30em" }}
           h="60%"
           rounded="md"
@@ -24,17 +25,17 @@ export default function Login() {
           align="center"
           shadow="lg"
         >
-          <form
-            className={style.form}
+          <Form
+            as="form"
             onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleLogin(e)}
           >
             <Box
               borderBottom="14px solid"
               fontWeight="bold"
-              borderColor={Style.headerColor}
+              borderColor="loginHeader"
             >
-              <Text fontSize="5xl" color={Style.headerColor} display="inline">
-                Erin
+              <Text fontSize="5xl" color="loginHeader" display="inline">
+                {LoginPage.title}
               </Text>
               <Text
                 fontSize="5xl"
@@ -42,60 +43,41 @@ export default function Login() {
                 color="black"
                 display="inline"
               >
-                Systems
+                {LoginPage.subTitle}
               </Text>
             </Box>
 
             <FormControl isRequired>
-              <Input
+              <FormInput
                 type="email"
                 variant="flushed"
                 placeholder="email address"
-                _placeholder={{ color: Style.placeHolder }}
-                borderBottom={`5px solid ${Style.placeHolder}`}
-                p="12px"
               />
             </FormControl>
 
             <FormControl isRequired>
               <InputGroup>
-              <Input
-                type={isOpen ? "text" : "password"}
-                variant="flushed"
-                placeholder="password"
-                _placeholder={{ color: Style.placeHolder }}
-                borderBottom={`5px solid ${Style.placeHolder}`}
-                p="12px"
-                _invalid={{textColor: 'red.100'}}
-              />
-              <FormErrorMessage>inValid</FormErrorMessage>
-              <InputRightElement
-                cursor="pointer"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {!isOpen ? (
-                  <ViewIcon w={6} h={6} />
-                ) : (
-                  <ViewOffIcon w={6} h={6} />
-                )}
-              </InputRightElement>
+                <FormInput
+                  type={isOpen ? "text" : "password"}
+                  variant="flushed"
+                  placeholder="password"
+                />
+                <InputRightElement
+                  cursor="pointer"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {!isOpen ? (
+                    <ViewIcon w={6} h={6} />
+                  ) : (
+                    <ViewOffIcon w={6} h={6} />
+                  )}
+                </InputRightElement>
               </InputGroup>
             </FormControl>
-
-            <Button
-              isLoading={loginMutation.isLoading}
-              w="40%"
-              fontSize="md"
-              p="1.5rem"
-              type="submit"
-              bg={Style.mainColor}
-              rounded="xl"
-              color="white"
-              _hover={{ backgroundColor: "green.500", color: "gray.300" }}
-            >
-              Нэвтрэх
-            </Button>
-          </form>
+            <Submit isLoading={loginMutation.isLoading} type="submit">
+              {LoginPage.submit}
+            </Submit>
+          </Form>
         </Flex>
       </Flex>
     </>
