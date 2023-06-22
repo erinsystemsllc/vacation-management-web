@@ -1,18 +1,19 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex} from "@chakra-ui/react";
 import { SideTitles } from "../Data/globalData";
+import useInfo from "../hooks/useInfo";
+import { SideButton } from "./SideButton";
 
 export default function Sidebar() {
+  const info = useInfo();
   return (
-    <Flex w="12.5vw" h="100%">
-      <Button isActive _active={{bg: "mainBackground", color:"mainColor"}} w="100%" h="6%"  rounded="none">
-        <Flex
-          fontWeight="semibold"
-          justify="start"
-          align="center"
-        >
-          {SideTitles.first}
-        </Flex>
-      </Button>
+    <Flex direction="column" w="12.5vw" h="100%">
+      <SideButton value={SideTitles.first.title} url={SideTitles.first.path} />
+      {info?.role === "manager" ? (
+        <>
+          <SideButton value={SideTitles.second.title} url={SideTitles.second.path} />
+          <SideButton value={SideTitles.third.title} url={SideTitles.third.path} />
+        </>
+      ) : null}
     </Flex>
   );
 }

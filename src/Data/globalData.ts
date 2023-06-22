@@ -16,7 +16,16 @@ interface Personal_Info{
 
 
 interface Side_Titles{
-    first: string
+    first: {
+        title: string,
+        path: string,
+    },second: {
+        title: string,
+        path: string,
+    },third: {
+        title: string,
+        path: string,
+    },
 }
 
 interface Top_Titles{
@@ -24,16 +33,6 @@ interface Top_Titles{
 }
 
 
-
-// export enum LoginAlert{
-//     error="error",
-//     success="success",
-//     loginUrl="http://localhost:8000/api/user/login",
-//     randomErr="An error occurred"
-// }
-export enum Response { 
-
-}
 export interface RequestModel{
     error:"error" | "success" | "info" | "warning" | "loading" | undefined,
     success:"error" | "success" | "info" | "warning" | "loading" | undefined,
@@ -57,8 +56,20 @@ export const PersonalInfo: Personal_Info = {
     team: "Баг:",
 }
 
+
 export const SideTitles: Side_Titles = {
-    first: "Амралт, чөлөө"
+    first: {
+        title: "Амралт, чөлөө",
+        path: "/",
+    },
+    second: {
+        title: "Ажилчдын мэдээлэл",
+        path: "/info",
+    },
+    third: {
+        title: "Чөлөөний түүх",
+        path: "/history",
+    },
 }
 
 export const TopTitles: Top_Titles = {
