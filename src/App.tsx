@@ -14,24 +14,24 @@ export default function App() {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
 
-  useEffect(() => {
-    if (token === null) {
-      navigate("/login");
-    }
-  }, [token, navigate]);
+  // useEffect(() => {
+  //   if (token === null) {
+  //     navigate("/login");
+  //   }
+  // }, [token, navigate]);
 
   const { pathname } = useLocation();
 
   return (
     <Box w="100vw" h="100vh" overflow="hidden">
-      {pathname === "/login" ? null : token === null ? null : <Topbar />}
+      {pathname === "/login" ? null : token !== null ? null : <Topbar />}
       <Flex w="100%" h="100%">
-        {pathname === "/login" ? null : token === null ? null : <Sidebar />}
+        {pathname === "/login" ? null : token !== null ? null : <Sidebar />}
         <Routes>
           <Route
             path="/"
             element={
-              token === null ? (
+              token !== null ? (
                 <Flex
                   w="100vw"
                   h="100vh"
