@@ -1,4 +1,13 @@
-
+export interface User {
+    id: string,
+    lastName: string,
+    firstName: string,
+    email: string,
+    firstWorkDay: string,
+    position: string,
+    team: string,
+    role: string
+}
 interface Login_Page{
     submit: string,
     title: string,
@@ -30,6 +39,18 @@ interface Side_Titles{
 
 interface Top_Titles{
     logout: string
+}
+
+interface Employee_Info{
+    header: string,
+    hashTag: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    role: string,
+    team: string,
+    position: string,
+    firstWorkDay: string,
 }
 
 
@@ -79,4 +100,16 @@ export const LoginPage: Login_Page = {
     submit: "Нэвтрэх",
     title: "Erin",
     subTitle: "Systems",
+}
+
+export const EmployeeInfo : Employee_Info= {
+    header: "Ажилчдын мэдээлэл",
+    hashTag: "#",
+    firstName: "Овог",
+    lastName: "Нэр",
+    email: "Цахим хаяг",
+    role: "Дүр",
+    team: "Баг",
+    position: "Албан тушаал",
+    firstWorkDay: "Ажилд орсон огноо"
 }
