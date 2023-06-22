@@ -1,4 +1,4 @@
-import { Button, Input, MenuList, chakra, Flex } from "@chakra-ui/react";
+import { Button, Input, MenuList, chakra, Flex, TableContainer } from "@chakra-ui/react";
 
 export const FormInput = chakra(Input, {
     baseStyle: {
@@ -59,3 +59,23 @@ export const HeaderContainer = chakra(Flex, {
         px: "2rem",
     }
 })
+
+export const SearchInput = chakra(Input, {
+    baseStyle: {
+        bg: "white",
+    }
+})
+
+export const ExtendedTableContainer = chakra(TableContainer, {
+    baseStyle: {
+      my: "2rem",
+      border: "none",
+      "&::-webkit-scrollbar": {
+        width: "6px",
+        backgroundColor: `rgba(0, 0, 0, 0.05)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#a7c957",
+      },
+    },
+  });
