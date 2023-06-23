@@ -8,7 +8,7 @@ export default function Sidebar() {
   return (
     <Flex direction="column" w="12.5vw" h="100%">
       <SideButton value={SideTitles.first.title} url={SideTitles.first.path} />
-      {info?.role === "manager" ? (
+      {info?.role === "Менежер" ? (
         <>
           <SideButton value={SideTitles.second.title} url={SideTitles.second.path} />
           <SideButton value={SideTitles.third.title} url={SideTitles.third.path} />

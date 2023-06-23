@@ -7,6 +7,8 @@ import {
   Text,
   TableContainer,
 } from "@chakra-ui/react";
+=======
+import { Button, Input, MenuList, chakra, Flex, TableContainer, Tbody } from "@chakra-ui/react";
 
 export const FormInput = chakra(Input, {
   baseStyle: {
@@ -103,3 +105,48 @@ export const ExtendedTableContainer = chakra(TableContainer, {
     },
   },
 });
+=======
+    baseStyle: {
+        _active:{ bg: "mainBackground", color: "mainColor" },
+        bg: "white",
+        w: "100%",
+        h: "6%",
+        rounded: "none"
+    }
+})
+
+export const SearchInput = chakra(Input, {
+    baseStyle: {
+        bg: "white",
+    }
+})
+
+export const ExtendedTableContainer = chakra(TableContainer, {
+    baseStyle: {
+      mt: "1rem",
+      border: "none",
+      "&::-webkit-scrollbar": {
+        width: "6px",
+        backgroundColor: `rgba(0, 0, 0, 0.05)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#a7c957",
+      },
+      w: "95%",
+      position: "relative",
+      bottom: "25px"
+    },
+  });
+
+  export const RequestButton = chakra(Button, {
+    baseStyle: {
+        bg: "#6A994E",
+        color: "#FFFFFF",
+        w: "140px",
+        h: "45px",
+        borderRadius: "15px",
+        position: "relative",
+        left: "795px",
+        bottom: "3px"
+    }
+  })

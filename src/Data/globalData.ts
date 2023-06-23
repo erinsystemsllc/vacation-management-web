@@ -23,6 +23,19 @@ interface Personal_Info{
     team: string
 }
 
+interface List_Info{
+    Num: string,
+    lastName: string,
+    firstName: string,
+    team: string,
+    leaveType: string,
+    createdDate: string,
+    leaveHour: string,
+    approvedBy: string,
+    modifiedDate: string,
+    state: string,
+}
+
 
 interface Side_Titles{
     first: {
@@ -112,4 +125,16 @@ export const EmployeeInfo : Employee_Info= {
     team: "Баг",
     position: "Албан тушаал",
     firstWorkDay: "Ажилд орсон огноо"
+}
+export const ListInfo: List_Info = {
+    Num: "#",
+    lastName: "Овог",
+    firstName: "Нэр",
+    team: "Баг",
+    leaveType: "Төрөл",
+    createdDate: "Үүссэн огноо",
+    leaveHour: "Авсан цаг",
+    approvedBy: "Батлах менежер",
+    modifiedDate: "Авсан огноо",
+    state: "Төлөв"
 }
