@@ -1,4 +1,13 @@
-
+export interface User {
+    id: string,
+    lastName: string,
+    firstName: string,
+    email: string,
+    firstWorkDay: string,
+    position: string,
+    team: string,
+    role: string
+}
 interface Login_Page{
     submit: string,
     title: string,
@@ -45,6 +54,18 @@ interface Top_Titles{
     logout: string
 }
 
+interface Employee_Info{
+    header: string,
+    hashTag: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    role: string,
+    team: string,
+    position: string,
+    firstWorkDay: string,
+}
+
 
 export interface RequestModel{
     error:"error" | "success" | "info" | "warning" | "loading" | undefined,
@@ -61,10 +82,10 @@ export const LoginRequest : RequestModel = {
 }
 
 export const PersonalInfo: Personal_Info = {
-    firstName: "Овог:",
-    lastName: "Нэр:",
-    email: "Имэйл:",
-    firstWorkDay: "Ажилд орсон огно:",    
+    firstName: "Нэр:",
+    lastName: "Овог:",
+    email: "Цахим хаяг:",
+    firstWorkDay: "Ажилд орсон огноо:",    
     position: "Албан тушаал:",
     team: "Баг:",
 }
@@ -94,6 +115,17 @@ export const LoginPage: Login_Page = {
     subTitle: "Systems",
 }
 
+export const EmployeeInfo : Employee_Info= {
+    header: "Ажилчдын мэдээлэл",
+    hashTag: "#",
+    firstName: "Овог",
+    lastName: "Нэр",
+    email: "Цахим хаяг",
+    role: "Дүр",
+    team: "Баг",
+    position: "Албан тушаал",
+    firstWorkDay: "Ажилд орсон огноо"
+}
 export const ListInfo: List_Info = {
     Num: "#",
     lastName: "Овог",
