@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import useLists, { AbsenceList } from "../hooks/useLists";
 import { ListInfo } from "../Data/globalData";
-import { SearchInput } from "../themes/customComponents";
-import { ExtendedTableContainer } from "../themes/customComponents"
+import { ExtendedTableContainer, RequestButton,  SearchInput} from "../themes/customComponents"
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 export default function AbsenceList() {
   const { lists, setLists, data } = useLists();
@@ -158,6 +158,7 @@ export default function AbsenceList() {
       <Flex flexDirection="column" w="85vw" px="2%" py="2.3%">
         <Text fontSize="28px" as="b" color="personalHeader">
           Чөлөөний түүх
+          <RequestButton>Чөлөө авах</RequestButton>
         </Text>
       </Flex>
       <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem">
@@ -174,13 +175,13 @@ export default function AbsenceList() {
               <Th>{ListInfo.approvedBy}</Th>
               <Th>{ListInfo.modifiedDate}</Th>
               <Th>{ListInfo.state}</Th>
+              <Th></Th>
             </Tr>
             <Tr>
               <Th></Th>
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchLast(event)
                   }
@@ -189,7 +190,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchFirst(event)
                   }
@@ -198,7 +198,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchTeam(event)
                   }
@@ -207,7 +206,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchType(event)
                   }
@@ -216,7 +214,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchCreatedDate(event)
                   }
@@ -225,7 +222,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="number"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchHour(event)
                   }
@@ -234,7 +230,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchApprovedBy(event)
                   }
@@ -243,7 +238,6 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchModifiedDate(event)
                   }
@@ -252,12 +246,12 @@ export default function AbsenceList() {
               <Th>
                 <SearchInput
                   type="text"
-                  placeholder="search"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     handleSearchState(event)
                   }
                 />
               </Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -266,6 +260,7 @@ export default function AbsenceList() {
                 <Tr
                   borderBottom="1px solid #E2E8F0"
                   _last={{ borderBottom: "none" }}
+                  key={i}
                 >
                   <Td>{i + 1}</Td>
                   <Td textAlign="center">{d.lastName}</Td>
@@ -277,6 +272,7 @@ export default function AbsenceList() {
                   <Td textAlign="center">{d.approvedBy}</Td>
                   <Td textAlign="center">{d.modifiedDate}</Td>
                   <Td textAlign="center">{d.state}</Td>
+                  <Td><BsThreeDotsVertical size={20}/></Td>
                 </Tr>
               );
             })} 
