@@ -87,10 +87,11 @@ export const ExtendedTableContainer = chakra(TableContainer, {
     baseStyle: {
         bg: "#6A994E",
         color: "#FFFFFF",
-        w: "130px",
-        borderRadius: "10px",
+        w: "140px",
+        h: "45px",
+        borderRadius: "15px",
         position: "relative",
-        left: "590px",
+        left: "795px",
         bottom: "3px"
     }
   })

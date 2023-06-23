@@ -158,7 +158,7 @@ export default function AbsenceList() {
       <Flex flexDirection="column" w="85vw" px="2%" py="2.3%">
         <Text fontSize="28px" as="b" color="personalHeader">
           Чөлөөний түүх
-          <RequestButton>Чөлөө авах</RequestButton>
+          <RequestButton fontSize="18px">Чөлөө авах</RequestButton>
         </Text>
       </Flex>
       <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem">
