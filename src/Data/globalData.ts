@@ -71,8 +71,8 @@ export const LoginRequest : RequestModel = {
 export const PersonalInfo: Personal_Info = {
     firstName: "Нэр:",
     lastName: "Овог:",
-    email: "Имэйл:",
-    firstWorkDay: "Ажилд орсон огно:",    
+    email: "Цахим хаяг:",
+    firstWorkDay: "Ажилд орсон огноо:",    
     position: "Албан тушаал:",
     team: "Баг:",
 }
