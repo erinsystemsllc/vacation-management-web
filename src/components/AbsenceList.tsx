@@ -18,7 +18,7 @@ export default function AbsenceList() {
 
   //search section !
   const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.lastName.toLowerCase().includes(value.toLowerCase())) {
@@ -33,7 +33,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchFirst = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueFirst = (event.target as HTMLInputElement).value;
+    const valueFirst = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.firstName.toLowerCase().includes(valueFirst.toLowerCase())) {
@@ -48,7 +48,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchTeam = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueFirst = (event.target as HTMLInputElement).value;
+    const valueFirst = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.team.toLowerCase().includes(valueFirst.toLowerCase())) {
@@ -63,7 +63,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.leaveType.toLowerCase().includes(value.toLowerCase())) {
@@ -78,7 +78,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchCreatedDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.createdDate.toLowerCase().includes(value.toLowerCase())) {
@@ -93,7 +93,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchHour = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target).value;
     const number = parseInt(value)
     const found = data.filter((list: AbsenceList) => {
       if (list.leaveHour === number) {
@@ -108,7 +108,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchApprovedBy = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.approvedBy.toLowerCase().includes(value.toLowerCase())) {
@@ -123,7 +123,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchModifiedDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.modifiedDate.toLowerCase().includes(value.toLowerCase())) {
@@ -138,7 +138,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchState = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value= (event.target as HTMLInputElement).value;
+    const value= (event.target).value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.state.toLowerCase().includes(value.toLowerCase())) {

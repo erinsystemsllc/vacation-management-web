@@ -21,7 +21,8 @@ export default function useLists() {
     queryKey: ["lists"],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:8000/api/absenceList/${email}`
+        // `http://localhost:8000/api/absenceList/${email}`
+        "http://localhost:8000/api/absenceList/chiluugen.byambaa@erin.systems"
       );
       const data = await response.json();
       setLists(data);
