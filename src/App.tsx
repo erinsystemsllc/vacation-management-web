@@ -9,7 +9,15 @@ import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
-
+import LeaveReques from "./components/LeaveReques";
+<div className="container mt-3">
+        <Routes>
+          <Route path="/" element={<LeaveReques/>} />
+          <Route path="/leaveType" element={<LeaveReques/>} />
+          <Route path="/save" element={<LeaveReques/>} />
+          <Route path="/get" element={<LeaveReques/>} />
+        </Routes>
+      </div>
 export default function App() {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
