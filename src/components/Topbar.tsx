@@ -29,8 +29,8 @@ export default function Topbar() {
   const info: Profile | null = sessionStorage.getItem("token")
     ? JSON.parse(sessionStorage.getItem("token") as string)
     : null;
-  const firstLetter = info?.firstName?.slice(0, 1);
-  const fullName = firstLetter ? firstLetter + "." + info?.lastName : "";
+  const firstLetter = info?.lastName?.slice(0, 1);
+  const fullName = firstLetter ? firstLetter + "." + info?.firstName : "";
 
   return (
     <HeaderContainer justify="space-between">
