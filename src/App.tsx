@@ -9,7 +9,7 @@ import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
-import LeaveReques from "./components/LeaveReques";
+import LeaveReques from "./components/LeaveRequest";
 import Info from "./pages/Info";
 
 export default function App() {

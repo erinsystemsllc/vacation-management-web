@@ -7,7 +7,7 @@ import {
   SearchInput,
 } from "../themes/customComponents";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import LeaveReques from "./LeaveReques";
+import LeaveRequest from "./LeaveRequest";
 
 export default function AbsenceList() {
   const { lists, setLists, data } = useLists();
@@ -162,7 +162,7 @@ export default function AbsenceList() {
           <Text fontSize="28px" as="b" color="personalHeader">
             Чөлөөний түүх
           </Text>
-          <LeaveReques />
+          <LeaveRequest />
         </Flex>
       </Flex>
       <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem">

@@ -26,7 +26,7 @@ type Manager = {
   lastName: string;
 };
 
-export default function LeaveReques() {
+export default function LeaveRequest() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [jsonData, setJsonData] = useState("");
 
