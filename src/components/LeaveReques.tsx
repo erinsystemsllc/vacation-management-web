@@ -74,7 +74,7 @@ export default function LeaveReques() {
 
 
 interface saveReq{
-  id: string,
+  employee: string,
   approvedBy: string,
   leaveType: string,
   requestDate: string,
@@ -95,12 +95,12 @@ interface saveReq{
       const currentDate = year + "-" + month + "-" + date;
       const stringComp = event.target[2].value.localeCompare(currentDate);
       const requestDate = stringComp >= 0 ? event.target[2].value : null;
-      
       const leaveType = event.target[1].value;
       const leaveHour = parseInt(event.target[3].value);
       const approvedBy = event.target[4].value;
-      const id = "12345";
-      saveMutation.mutate({id,approvedBy, leaveType, requestDate, leaveHour})
+      const token = sessionStorage.getItem('token')
+      const employee = JSON.parse(token).id;
+      saveMutation.mutate({employee,approvedBy, leaveType, requestDate, leaveHour})
     }
 
   return (
