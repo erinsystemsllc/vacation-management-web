@@ -109,3 +109,17 @@ export const SearchInput = chakra(Input, {
         bg: "white",
     }
 })
+
+export const RequestButton = chakra(Button, {
+  baseStyle: {
+      bg: "#6A994E",
+      color: "#FFFFFF",
+      w: "140px",
+      h: "45px",
+      borderRadius: "15px",
+      position: "relative",
+      left: "795px",
+      bottom: "3px"
+  }
+})
+

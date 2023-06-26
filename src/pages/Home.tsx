@@ -10,7 +10,6 @@ export default function Home() {
   return (
       <Flex direction="column" w="100%" h="100%">
         <Personal />
-        <LeaveReques/>
         <AbsenceList />
       </Flex>
   );
