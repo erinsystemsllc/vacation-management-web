@@ -24,12 +24,11 @@ export default function useLoginForm() {
         },
       });
       const data = await response.json();
-      console.log(data)
-      if(!data.mongoUser) throw new Error(data.message)
+      if(!data.user) throw new Error(data.message)
       return data;
     },
     onSuccess: (data) => {
-      const loggedIn = JSON.stringify(data.mongoUser);
+      const loggedIn = JSON.stringify(data.user);
       sessionStorage.setItem("token", loggedIn);
       toast({
         title: "Logged in Successfully",

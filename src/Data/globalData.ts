@@ -1,3 +1,12 @@
+interface deletePop {
+    deleted: string,
+    delete: string,
+    cancel: string,
+    content: string,
+    header: string,
+    state: string,
+}
+
 export interface User {
     id: string,
     lastName: string,
@@ -137,4 +146,13 @@ export const ListInfo: List_Info = {
     approvedBy: "Батлах менежер",
     modifiedDate: "Авсан огноо",
     state: "Төлөв"
+}
+
+export const DeletePop: deletePop = {
+    deleted: 'Амжилттай устлаа',
+    delete: 'Устгах',
+    state: "new",
+    cancel: 'Болих',
+    header: 'Чөлөөний хүсэлт устгах',
+    content: 'Та энэхүү чөлөөний хүсэлтийг устгахдаа итгэлтэй байна уу? Уг үйлдэл нь буцаагдах боломжгүй тул сайтар шалгана уу.'
 }

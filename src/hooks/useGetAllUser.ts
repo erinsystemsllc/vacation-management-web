@@ -9,7 +9,7 @@ export default function useGetAllUser() {
     const {data, isStale} = useQuery({
         queryKey: ["users"],
         queryFn: async() => {
-            const response = await fetch('http://localhost:8000/api/user/')
+            const response = await fetch('http://localhost:8000/api/user/all')
             const data = await response.json()
             setLists(data)
             return data;

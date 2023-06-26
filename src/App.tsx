@@ -27,7 +27,9 @@ export default function App() {
     <Box w="100vw" h="100vh" overflow="hidden">
       {pathname === "/login" ? null : token === null ? null : <Topbar />}
       <Flex w="100%" h="100%">
-        {pathname === "/login" ? null : token === null ? null : <Sidebar />}
+        <Box>
+          {pathname === "/login" ? null : token === null ? null : <Sidebar />}
+        </Box>
         <Routes>
           <Route
             path="/"
@@ -53,7 +55,9 @@ export default function App() {
               )
             }
           />
-          <Route path="/info" element={
+          <Route
+            path="/info"
+            element={
               token === null ? (
                 <Flex
                   w="100vw"
@@ -71,9 +75,10 @@ export default function App() {
                   />
                 </Flex>
               ) : (
-                <Info/>
+                <Info />
               )
-            }/>
+            }
+          />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Flex>

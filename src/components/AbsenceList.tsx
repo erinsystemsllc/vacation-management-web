@@ -7,14 +7,16 @@ import {
   Th,
   Tbody,
   Td,
+  
 } from "@chakra-ui/react";
 import useLists, { AbsenceList } from "../hooks/useLists";
 import { ListInfo } from "../Data/globalData";
 import { ExtendedTableContainer, RequestButton,  SearchInput} from "../themes/customComponents"
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import DeleteRequest from './DeleteRequest';
 
 export default function AbsenceList() {
   const { lists, setLists, data } = useLists();
+  console.log(lists)
 
   //search section !
   const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -151,7 +153,6 @@ export default function AbsenceList() {
       setLists(data);
     }
   };
-
   //render section
   return (
     <>
@@ -272,7 +273,7 @@ export default function AbsenceList() {
                   <Td textAlign="center">{d.approvedBy}</Td>
                   <Td textAlign="center">{d.modifiedDate}</Td>
                   <Td textAlign="center">{d.state}</Td>
-                  <Td><BsThreeDotsVertical size={20}/></Td>
+                  <Td><DeleteRequest state={d.state}/></Td>
                 </Tr>
               );
             })} 
