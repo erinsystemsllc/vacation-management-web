@@ -25,20 +25,24 @@ type Manager = {
   firsName: string;
   lastName: string;
 };
+type LeaveType = {
+  typeName : string;
+  maxHour : number;
+}
 
 export default function LeaveRequest() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [jsonData, setJsonData] = useState("");
 
 
-  const { data, isFetching } = useQuery({
-    queryKey: ["leaveType"],
+  const { data: leaveTypes } = useQuery({
+    queryKey: ["leaveTypes"],
     queryFn: async () => {
       const response = await fetch(
         "http://localhost:8000/api/vacation/leaveType"
       );
       const data = await response.json();
-      return data;
+      return data as LeaveType[];
     },
   });
 
@@ -46,7 +50,7 @@ export default function LeaveRequest() {
     queryKey: ["managers"],
     queryFn: async () => {
       const response = await fetch(
-        "http://localhost:8000/api/vacation/approvedby?role=Менежер"
+        "http://localhost:8000/api/user/approvedby?role=manager"
       );
       const data = await response.json();
       return data as Manager[];
@@ -74,11 +78,11 @@ export default function LeaveRequest() {
 
 
 interface saveReq{
-  employee: string,
-  approvedBy: string,
+  // requestedUserId: string,
+  approvedUserId: string,
   leaveType: string,
-  requestDate: string,
-  leaveHour: number
+  absenceDate: Date,
+  absenceHour: number
 }  
 
 
@@ -92,15 +96,18 @@ interface saveReq{
       const date = d.getDate();
       const m = d.getMonth() + 1;
       const month = m < 10 ? "0" + m : m;
-      const currentDate = year + "-" + month + "-" + date;
+      const hours = d.getHours();
+      const minutes = d.getMinutes();
+      const seconds = d.getSeconds();
+      const currentDate =year + "-" + month + "-" + date + "-" + hours + "-" + minutes + "-" + seconds;
       const stringComp = event.target[2].value.localeCompare(currentDate);
-      const requestDate = stringComp >= 0 ? event.target[2].value : null;
+      const absenceDate = stringComp >= 0 ? event.target[2].value : null;
       const leaveType = event.target[1].value;
-      const leaveHour = parseInt(event.target[3].value);
-      const approvedBy = event.target[4].value;
-      const token = sessionStorage.getItem('token')
-      const employee = JSON.parse(token).id;
-      saveMutation.mutate({employee,approvedBy, leaveType, requestDate, leaveHour})
+      const absenceHour = parseInt(event.target[3].value);
+      const approvedUserId = event.target[4].value;
+      // const token = sessionStorage.getItem('token')
+      // const employee = JSON.parse(token).id;
+      saveMutation.mutate({approvedUserId, leaveType, absenceDate, absenceHour})
     }
 
   return (
@@ -123,13 +130,9 @@ interface saveReq{
 
               <Select variant="outline" size="md">
                 <option>Чөлөөний төрөл оруулна уу! </option>
-                {data?.map((type: string) => {
-                  return (
-                    <>
-                      <option value={type.id}>{type.typeName}</option>
-                    </>
-                  );
-                })}
+                {leaveTypes?.map((leaveType) => (
+                      <option value={leaveType.typeName}>{leaveType.typeName}</option>
+                  ))}
               </Select>
             </FormControl>
 
