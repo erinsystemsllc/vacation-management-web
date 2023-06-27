@@ -88,9 +88,9 @@ export default function Info() {
                   <Td textAlign="center">{user.lastName}</Td>
                   <Td textAlign="center">{user.firstName}</Td>
                   <Td textAlign="center">{user.email}</Td>
-                  <Td>{user.role}</Td>
+                  <Td textAlign="center">{user.role}</Td>
                   <Td textAlign="center">{user.team}</Td>
-                  <Td>{user.position}</Td>
+                  <Td textAlign="center">{user.position}</Td>
                   <Td textAlign="center">{user.firstWorkDay}</Td>
                   <Td textAlign="center">
                     <MoreVert />
