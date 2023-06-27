@@ -20,7 +20,7 @@ export default function Info() {
       <Text color="personalHeader" fontSize="3xl" fontWeight="bold">
         {EmployeeInfo.header}
       </Text>
-      <ExtendedTableContainer overflowY="scroll">
+      <ExtendedTableContainer overflowY="scroll" my="3rem">
         <Table size="sm" variant="collapse" position="relative">
           <Thead position="sticky" top={0}>
             <Tr bg="mainBackground">
