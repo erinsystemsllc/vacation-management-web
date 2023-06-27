@@ -1,6 +1,6 @@
 import { Spinner, Flex } from "@chakra-ui/react";
 
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import { useEffect } from "react";
 
 // components
@@ -14,6 +14,8 @@ import Info from "./pages/Info";
 export default function App() {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
+  const json = token ? JSON.parse(token) : null;
+  const role = json?.role;
 
   useEffect(() => {
     if (token === null) {
@@ -58,7 +60,7 @@ export default function App() {
           <Route
             path="/info"
             element={
-              token === null ? (
+                role !== 'Менежер' ? (
                 <Flex
                   w="100vw"
                   h="100vh"
