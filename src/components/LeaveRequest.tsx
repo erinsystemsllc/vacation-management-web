@@ -31,7 +31,7 @@ type LeaveType = {
   displayName: string;
 };
 interface RequestForm {
-  // employeeId: string;
+  employeeId: string;
   managerId: string;
   type: string;
   date: string;
@@ -61,15 +61,16 @@ export default function LeaveRequest() {
       return data as Manager[];
     },
   });
-  const saveMutation = useMutation({
-    mutationFn: (jsonData: RequestForm) =>
-      fetch("http://localhost:8000/api/vacation/save", {
+  const { data, mutate, isLoading } = useMutation({
+    mutationFn: async (data: RequestForm) => {
+      await fetch("http://localhost:8000/api/vacation/save", {
         method: "POST",
+        body: JSON.stringify(data),
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(jsonData),
-      }),
+      });
+    },
     onSuccess: () => {
       toast({
         title: "Aмжилттай хадгалагдлаа.",
@@ -97,11 +98,12 @@ export default function LeaveRequest() {
     const type = event.target[1].value;
     const hour = parseInt(event.target[3].value);
     const managerId = event.target[4].value;
-    // const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
+    const parsedToken = JSON.parse(token);
+    const employeeId = parsedToken.id;
     const date = event.target[2].value;
-    const data = { type, date, hour, managerId };
+    const data = { type, date, hour, managerId, employeeId };
     if (hour === 0) {
-      // Display an error toast or alert indicating that the hour should be greater than zero
       toast({
         title: "Алдаа!",
         description: "Чөлөө авах цагаа оруулна уу.",
@@ -111,7 +113,7 @@ export default function LeaveRequest() {
       });
       return;
     }
-    saveMutation.mutate(data);
+    mutate(data);
   };
   const currentDate = () => new Date().toISOString().slice(0, 10);
   return (
