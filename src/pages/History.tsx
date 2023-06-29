@@ -19,22 +19,11 @@ import {
 } from "../themes/customComponents";
 import DeleteRequest from "../components/DeleteRequest";
 import useGetAbsenceHistory from "../hooks/useGetAbsenceHistory";
-import { useState } from "react";
 
 export default function History() {
 
-  const {data, absenceList, setAbsenceLists, allData} = useGetAbsenceHistory();
-  const [isChecked, setIsChecked] = useState(false)
+  const {data, absenceList, setAbsenceLists} = useGetAbsenceHistory();
 
-  const handleCheckBox = () => {
-      if(isChecked){
-        setAbsenceLists(data)
-        setIsChecked(!isChecked)
-      }else{
-        setAbsenceLists(allData)
-        setIsChecked(!isChecked)
-      }
-  }
 
   return (
     <Flex direction="column">
@@ -45,7 +34,7 @@ export default function History() {
           <Flex justifyContent="center">
             <CheckboxGroup border="1px solid green" rounded="lg" colorScheme="green" size="lg">
             <Text>Бүх хүсэлтийг харах</Text>
-            <Checkbox onChange={()=>handleCheckBox()}/>
+            <Checkbox/>
             </CheckboxGroup>
           </Flex>
         <ExtendedTableContainer overflowY="scroll" overflowX="hidden" my="3rem">

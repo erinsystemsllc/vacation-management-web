@@ -15,14 +15,6 @@ export default function useGetAbsenceHistory() {
             return data;
         } 
     })
-    const {data: allData} = useQuery({
-        queryKey: ['AllAbsenceHistory'],
-        queryFn: async()=>{
-            const response= await fetch('http://localhost:8000/api/absence/?userId=');
-            const data= await response.json();
-            return data;
-        }
-    })
 
-  return {data, absenceList, setAbsenceLists, allData};
+  return {data, absenceList, setAbsenceLists};
 }
