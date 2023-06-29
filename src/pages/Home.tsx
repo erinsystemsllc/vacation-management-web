@@ -2,6 +2,7 @@
 import { Flex } from "@chakra-ui/react";
 
 import Personal from "../components/Personal";
+import LeaveReques from "../components/LeaveRequest";
 
 import AbsenceList from "../components/AbsenceList";
 

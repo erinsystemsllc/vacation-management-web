@@ -1,3 +1,4 @@
+
 export interface User {
     id: string,
     lastName: string,
@@ -126,6 +127,7 @@ export const EmployeeInfo : Employee_Info= {
     position: "Албан тушаал",
     firstWorkDay: "Ажилд орсон огноо"
 }
+
 export const ListInfo: List_Info = {
     Num: "#",
     lastName: "Овог",
