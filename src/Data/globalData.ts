@@ -151,7 +151,7 @@ export const ListInfo: List_Info = {
 export const DeletePop: deletePop = {
     deleted: 'Амжилттай устлаа',
     delete: 'Устгах',
-    state: "new",
+    state: "NEW",
     cancel: 'Болих',
     header: 'Чөлөөний хүсэлт устгах',
     content: 'Та энэхүү чөлөөний хүсэлтийг устгахдаа итгэлтэй байна уу? Уг үйлдэл нь буцаагдах боломжгүй тул сайтар шалгана уу.'

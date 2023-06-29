@@ -19,24 +19,29 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { PopButton } from "../themes/customComponents";
+import useDeleteAbsence from "../hooks/useDeleteAbsence";
 
 type DeleteRequestProps = {
     state: string;
+    id: string;
+    remove: (id: string) => void;
 }
 
-export default function DeleteRequest({ state }: DeleteRequestProps) {
+export default function DeleteRequest({ state, id, remove }: DeleteRequestProps) {
     const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure();
-   
+  const {mutate, isSuccess, isError} = useDeleteAbsence();
   const handleClick = () => {
-    toast({
+    mutate(id)
+    if(isSuccess){
+      toast({
         title: `${DeletePop.deleted}`,
         status: 'success',
         duration: 7000,
         isClosable: true,
       })
+    }
   }
-
   return (
     <>
       <Popover>
@@ -68,7 +73,7 @@ export default function DeleteRequest({ state }: DeleteRequestProps) {
             <Button
               colorScheme="red"
               mr={3}
-              onClick={()=>{onClose(); handleClick()}}
+              onClick={()=>{onClose(); handleClick(); remove(id)}}
               bg="#DE5F55"
               color="white"
             >
