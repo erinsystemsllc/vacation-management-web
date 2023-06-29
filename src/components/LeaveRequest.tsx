@@ -33,6 +33,7 @@ type LeaveType = {
 interface RequestForm {
   employeeId: string;
   managerId: string;
+  managerName: string;
   type: string;
   date: string;
   hour: number;
@@ -97,12 +98,15 @@ export default function LeaveRequest() {
     event.preventDefault();
     const type = event.target[1].value;
     const hour = parseInt(event.target[3].value);
-    const managerId = event.target[4].value;
+    const managerStr = event.target[4].value;
+    const manager = JSON.parse(managerStr);
+    const managerId = manager.id;
+    const managerName = getDisplayName(manager);
     const token = sessionStorage.getItem("token");
     const parsedToken = JSON.parse(token);
     const employeeId = parsedToken.id;
     const date = event.target[2].value;
-    const data = { type, date, hour, managerId, employeeId };
+    const data = { type, date, hour, managerId, managerName, employeeId };
     if (hour === 0) {
       toast({
         title: "Алдаа!",
@@ -193,7 +197,7 @@ export default function LeaveRequest() {
                   Менежер сонгоно уу!
                 </option>
                 {managers?.map((manager, index) => (
-                  <option key={index} value={manager.id}>
+                  <option key={index} value={JSON.stringify(manager)}>
                     {getDisplayName(manager)}
                   </option>
                 ))}
