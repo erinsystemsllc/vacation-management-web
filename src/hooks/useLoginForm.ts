@@ -13,7 +13,6 @@ export default function useLoginForm() {
   const navigate = useNavigate();
   const toast = useToast();
 
-
   const loginMutation = useMutation({
     mutationFn: async (formData: LoginForm) => {
       const response = await fetch(LoginRequest.loginUrl, {
@@ -24,12 +23,12 @@ export default function useLoginForm() {
         },
       });
       const data = await response.json();
-      console.log(data)
-      if(!data.mongoUser) throw new Error(data.message)
+      console.log(data);
+      if (!data.user) throw new Error(data.message);
       return data;
     },
     onSuccess: (data) => {
-      const loggedIn = JSON.stringify(data.mongoUser);
+      const loggedIn = JSON.stringify(data.user);
       sessionStorage.setItem("token", loggedIn);
       toast({
         title: "Logged in Successfully",

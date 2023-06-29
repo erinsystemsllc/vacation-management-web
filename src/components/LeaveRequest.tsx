@@ -104,9 +104,9 @@ export default function LeaveRequest() {
     const managerName = getDisplayName(manager);
     const token = sessionStorage.getItem("token");
     const parsedToken = JSON.parse(token);
-    const employeeId = parsedToken.id;
+    // const employeeId = parsedToken.id;
     const date = event.target[2].value;
-    const data = { type, date, hour, managerId, managerName, employeeId };
+    const data = { type, date, hour, managerId, managerName };
     if (hour === 0) {
       toast({
         title: "Алдаа!",

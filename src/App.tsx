@@ -3,7 +3,6 @@ import { Spinner, Flex } from "@chakra-ui/react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-// components
 import { Box } from "@chakra-ui/react";
 import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
@@ -16,11 +15,11 @@ export default function App() {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
 
-  // useEffect(() => {
-  //   if (token === null) {
-  //     navigate("/login");
-  //   }
-  // }, [token, navigate]);
+  useEffect(() => {
+    if (token === null) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
 
   const { pathname } = useLocation();
 
@@ -54,7 +53,9 @@ export default function App() {
               )
             }
           />
-          <Route path="/info" element={
+          <Route
+            path="/info"
+            element={
               token === null ? (
                 <Flex
                   w="100vw"
@@ -72,9 +73,10 @@ export default function App() {
                   />
                 </Flex>
               ) : (
-                <Info/>
+                <Info />
               )
-            }/>
+            }
+          />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Flex>

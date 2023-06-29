@@ -12,7 +12,6 @@ import LeaveRequest from "./LeaveRequest";
 export default function AbsenceList() {
   const { lists, setLists, data } = useLists();
 
-  //search section !
   const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
