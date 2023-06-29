@@ -1,6 +1,6 @@
-interface deletePop {
+interface DeleteProps {
     deleted: string,
-    delete: string,
+    deleteBtn: string,
     cancel: string,
     content: string,
     header: string,
@@ -148,9 +148,9 @@ export const ListInfo: List_Info = {
     state: "Төлөв"
 }
 
-export const DeletePop: deletePop = {
+export const DELETE_PROPS: DeleteProps = {
     deleted: 'Амжилттай устлаа',
-    delete: 'Устгах',
+    deleteBtn: 'Устгах',
     state: "NEW",
     cancel: 'Болих',
     header: 'Чөлөөний хүсэлт устгах',

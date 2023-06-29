@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface Profile{
+    id: string,
     email: string,
     firstName: string,
     firstWorkDay: string,

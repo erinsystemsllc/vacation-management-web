@@ -1,5 +1,5 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { DeletePop } from "../Data/globalData";
+import { DELETE_PROPS } from "../Data/globalData";
 import {
   Popover,
   PopoverTrigger,
@@ -35,7 +35,7 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
     mutate(id)
     if(isSuccess){
       toast({
-        title: `${DeletePop.deleted}`,
+        title: `${DELETE_PROPS.deleted}`,
         status: 'success',
         duration: 7000,
         isClosable: true,
@@ -46,7 +46,7 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
     <>
       <Popover>
         <PopoverTrigger>
-          {state == `${DeletePop.state}` ? <PopButton>
+          {state == `${DELETE_PROPS.state}` ? <PopButton>
             <BsThreeDotsVertical size={20} />
           </PopButton> : <PopButton isDisabled>
             <BsThreeDotsVertical size={20} />
@@ -56,7 +56,7 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
           <PopoverContent w="fit-content">
             <PopoverArrow />
             <PopoverBody>
-              <PopButton onClick={onOpen}>{DeletePop.delete}</PopButton>
+              <PopButton onClick={onOpen}>{DELETE_PROPS.deleteBtn}</PopButton>
             </PopoverBody>
           </PopoverContent>
         </Portal>
@@ -64,10 +64,10 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{DeletePop.header}</ModalHeader>
+          <ModalHeader>{DELETE_PROPS.header}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {DeletePop.content}
+            {DELETE_PROPS.content}
           </ModalBody>
           <ModalFooter display="flex" w="100%" justifyContent="space-evenly">
             <Button
@@ -77,7 +77,7 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
               bg="#DE5F55"
               color="white"
             >
-                {DeletePop.delete}
+                {DELETE_PROPS.deleteBtn}
             </Button>
             <Button
               bg="#6A994E"
@@ -85,7 +85,7 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
               onClick={onClose}
               colorScheme="green"
             >
-                {DeletePop.cancel}
+                {DELETE_PROPS.cancel}
             </Button>
           </ModalFooter>
         </ModalContent>

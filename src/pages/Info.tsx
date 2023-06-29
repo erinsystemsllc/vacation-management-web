@@ -1,7 +1,6 @@
 import { Flex, Table, Thead, Tbody, Tr, Th, Td, Text } from "@chakra-ui/react";
-import { EmployeeInfo } from "../Data/globalData";
+import { EmployeeInfo, User } from "../Data/globalData";
 import useSearchEmployee from "../hooks/useSearchEmployee";
-import {User} from '../Data/globalData'
 
 
 import {
@@ -10,6 +9,7 @@ import {
   ExtendedTableContainer,
 } from "../themes/customComponents";
 import React from "react";
+import DeleteRequest from '../components/DeleteRequest';
 
 export default function Info() {
 
@@ -93,7 +93,7 @@ export default function Info() {
                   <Td textAlign="center">{user.position}</Td>
                   <Td textAlign="center">{user.firstWorkDay}</Td>
                   <Td textAlign="center">
-                    <MoreVert />
+                    <DeleteRequest/>
                   </Td>
                 </Tr>
               );

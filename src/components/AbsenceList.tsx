@@ -24,7 +24,6 @@ export default function AbsenceList() {
   const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target).value;
 
-    // zasna
     const found = data.filter((list: AbsenceList) => {
       if (info.lastName.toLowerCase().includes(value.toLowerCase())) {
         return list;
@@ -39,7 +38,6 @@ export default function AbsenceList() {
 
   const handleSearchFirst = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valueFirst = (event.target).value;
-// zasna
     const found = data.filter((list: AbsenceList) => {
       if (info.firstName.toLowerCase().includes(valueFirst.toLowerCase())) {
         return list;
@@ -51,7 +49,6 @@ export default function AbsenceList() {
       setLists(data.record.lists);
     }
   };
-// zasna
   const handleSearchTeam = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valueFirst = (event.target).value;
 
@@ -67,7 +64,6 @@ export default function AbsenceList() {
     }
   };
 
-  // 
   const handleSearchType = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target).value;
 
@@ -274,7 +270,7 @@ export default function AbsenceList() {
                   <Td textAlign="center">{d.type.displayName}</Td>
                   <Td textAlign="center">{d.createdDate}</Td>
                   <Td textAlign="center">{d.hour}</Td>
-                  <Td textAlign="center">{d.managerId}</Td>
+                  <Td textAlign="center">{d.managerName}</Td>
                   <Td textAlign="center">{d.modifiedDate}</Td>
                   <Td textAlign="center">{d.state}</Td>
                   <Td><DeleteRequest state={d.state} id={d.id} remove={handleDelete}/></Td>

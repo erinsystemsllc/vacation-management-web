@@ -8,6 +8,7 @@ export interface AbsenceList {
   employeeId: string,
   hour: number,
   managerId: string,
+  managerName: string,
   modifiedDate: string,
   state: string,
   type: {
@@ -28,7 +29,7 @@ export default function useLists() {
     queryKey: ["lists"],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:8000/api/absenceList/${id}`
+        `http://localhost:8000/api/absence/${id}`
       );
       const data = await response.json();
       setLists(data);

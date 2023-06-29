@@ -8,6 +8,7 @@ import { Box } from "@chakra-ui/react";
 import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import History from "./pages/History";
 import Sidebar from "./components/Sidebar";
 import Info from "./pages/Info";
 
@@ -80,7 +81,30 @@ export default function App() {
                 <Info />
               )
             }
-          />
+          /> <Route
+          path="/history"
+          element={
+              role !== 'Менежер' ? (
+              <Flex
+                w="100vw"
+                h="100vh"
+                overflow="hidden"
+                justify="center"
+                align="center"
+              >
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
+                />
+              </Flex>
+            ) : (
+              <History />
+            )
+          }
+        />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Flex>
