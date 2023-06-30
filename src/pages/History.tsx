@@ -38,7 +38,7 @@ export default function History() {
 
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" w="100vw">
       <Flex direction="column" my="3rem" mx="3rem">
         <Text color="personalHeader" fontSize="3xl" fontWeight="bold">
           {ABSENCE_HISTORY.header}
@@ -49,7 +49,9 @@ export default function History() {
             <Checkbox onChange={()=>handleCheckBox()}/>
             </CheckboxGroup>
           </Flex>
-        <ExtendedTableContainer overflowY="scroll" overflowX="hidden" my="3rem">
+          </Flex>
+
+        <ExtendedTableContainer overflowY="scroll" mb="3rem" mx="3rem">
           <Table size="sm" variant="collapse" position="relative">
             <Thead position="sticky" top={0}>
               <Tr bg="mainBackground">
@@ -147,6 +149,5 @@ export default function History() {
           </Table>
         </ExtendedTableContainer>
       </Flex>
-    </Flex>
   );
 }

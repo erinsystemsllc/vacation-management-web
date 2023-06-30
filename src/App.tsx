@@ -84,7 +84,7 @@ export default function App() {
           /> <Route
           path="/history"
           element={
-              role !== 'Менежер' ? (
+              role !== 'Менежер'? (
               <Flex
                 w="100vw"
                 h="100vh"

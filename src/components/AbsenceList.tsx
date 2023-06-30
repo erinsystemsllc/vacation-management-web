@@ -17,7 +17,7 @@ import useInfo from "../hooks/useInfo";
 import LeaveRequest from "./LeaveRequest";
 
 export default function AbsenceList() {
-  const { lists, setLists, data} = useLists();
+  const { lists, setLists, data, revalidateLists} = useLists();
   const info  = useInfo();
   const handleDelete = (id: string) => {
     setLists(lists.filter((list) => list.id !== id));
@@ -154,6 +154,14 @@ export default function AbsenceList() {
       setLists(data);
     }
   };
+
+  
+  const handleLeaveRequest = () => {
+    // Call the leaveRequestMutation function to create a leave request
+    setTimeout(()=>{
+    revalidateLists();
+    }, 100)
+  };
   //render section
   return (
     <>
@@ -162,10 +170,10 @@ export default function AbsenceList() {
           <Text fontSize="28px" as="b" color="personalHeader">
             Чөлөөний түүх
           </Text>
-          <LeaveRequest />
+          <LeaveRequest onLeaveRequest={handleLeaveRequest}/>
         </Flex>
       </Flex>
-      <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem" overflowX="hidden">
+      <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem" overflowX="hidden" mb="5rem">
         <Table size="sm" variant="collapse" position="relative">
           <Thead backgroundColor="#A7C957" position='sticky' top={0}>
             <Tr color="#16400C" fontSize="14px">

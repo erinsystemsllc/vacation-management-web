@@ -79,14 +79,12 @@ interface Employee_Info{
 export interface RequestModel{
     error:"error" | "success" | "info" | "warning" | "loading" | undefined,
     success:"error" | "success" | "info" | "warning" | "loading" | undefined,
-    loginUrl:string,
     unsupportedError:string
 }
 
 export const LoginRequest : RequestModel = {
     error:"error",
     success:"success",
-    loginUrl:"http://localhost:8000/api/user/login",
     unsupportedError:"An error occurred"
 }
 
@@ -185,4 +183,12 @@ export const ABSENCE_HISTORY : AbsenceHistory = {
     managerNameHeader: "Батлах менежер",
     dateHeader: "Авсан огноо",
     stateHeader: "Төлөв"
+}
+interface ApiUrl {
+    main: string,
+}
+
+export const API_URL : ApiUrl = {
+    main: "http://192.168.50.68:8000",
+
 }

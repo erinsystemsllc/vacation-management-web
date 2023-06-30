@@ -1,10 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
+import { API_URL } from "../Data/globalData";
 
 export default function useDeleteAbsence() {
   const { mutate, isSuccess, isError } = useMutation({
     mutationFn: async (id: string) => {
       const response = await fetch(
-        `http://localhost:8000/api/absence/${id}`,
+        `${API_URL.main}/api/absence/${id}`,
         {
           method: "DELETE",
         }
