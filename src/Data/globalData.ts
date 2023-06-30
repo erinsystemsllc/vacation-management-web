@@ -156,3 +156,33 @@ export const DELETE_PROPS: DeleteProps = {
     header: 'Чөлөөний хүсэлт устгах',
     content: 'Та энэхүү чөлөөний хүсэлтийг устгахдаа итгэлтэй байна уу? Уг үйлдэл нь буцаагдах боломжгүй тул сайтар шалгана уу.'
 }
+
+interface AbsenceHistory{
+    header: string,
+    checkBox: string,
+    orderHeader: string,
+    lastNameHeader: string,
+    firstNameHeader: string,
+    teamHeader: string,
+    typeHeader: string,
+    createdDateHeader: string,
+    hourHeader: string,
+    managerNameHeader: string,
+    dateHeader: string,
+    stateHeader: string,
+}
+
+export const ABSENCE_HISTORY : AbsenceHistory = {
+    header: "Чөлөөний түүх",
+    checkBox: "Бүх хүсэлтийг харах",
+    orderHeader: "#",
+    lastNameHeader: "Овог", 
+    firstNameHeader: "Нэр",
+    teamHeader: "Баг",
+    typeHeader: "Төрөл",
+    createdDateHeader: "Үүссэн огноо",
+    hourHeader: "Авсан цаг",
+    managerNameHeader: "Батлах менежер",
+    dateHeader: "Авсан огноо",
+    stateHeader: "Төлөв"
+}

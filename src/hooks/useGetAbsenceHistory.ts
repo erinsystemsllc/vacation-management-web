@@ -1,11 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import useInfo from './useInfo';
 import { useState } from 'react';
 
 export default function useGetAbsenceHistory() {
-    const info = useInfo();
     const [absenceList, setAbsenceLists] = useState([]);
-
+    const info = JSON.parse(sessionStorage.getItem('token'));
     const {data} = useQuery({
         queryKey: ['AbsenceHistory'],
         queryFn: async() => {
@@ -16,5 +14,14 @@ export default function useGetAbsenceHistory() {
         } 
     })
 
-  return {data, absenceList, setAbsenceLists};
+    const {data: allData} = useQuery({
+        queryKey: ['AbsenceAllHistory'],
+        queryFn: async() => {
+            const response = await fetch(`http://localhost:8000/api/absence/?userId=`);
+            const data = await response.json();
+            return data;
+        } 
+    })
+
+  return {data, absenceList, setAbsenceLists, allData};
 }

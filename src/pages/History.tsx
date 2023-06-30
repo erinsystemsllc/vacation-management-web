@@ -19,22 +19,34 @@ import {
 } from "../themes/customComponents";
 import DeleteRequest from "../components/DeleteRequest";
 import useGetAbsenceHistory from "../hooks/useGetAbsenceHistory";
+import { ABSENCE_HISTORY } from "../Data/globalData";
+import { useState } from "react";
 
 export default function History() {
 
-  const {data, absenceList, setAbsenceLists} = useGetAbsenceHistory();
+  const {data, absenceList, setAbsenceLists, allData} = useGetAbsenceHistory();
+  const [isChecked, setIsChecked] = useState(false)
+
+  const handleCheckBox = () => {
+    if(isChecked){
+      setAbsenceLists(data)
+    }else{
+      setAbsenceLists(allData)
+    }
+    setIsChecked(!isChecked)
+  }
 
 
   return (
     <Flex direction="column">
       <Flex direction="column" my="3rem" mx="3rem">
         <Text color="personalHeader" fontSize="3xl" fontWeight="bold">
-          sad
+          {ABSENCE_HISTORY.header}
         </Text>
-          <Flex justifyContent="center">
+          <Flex justifyContent="end"  w="90%">
             <CheckboxGroup border="1px solid green" rounded="lg" colorScheme="green" size="lg">
-            <Text>Бүх хүсэлтийг харах</Text>
-            <Checkbox/>
+            <Text color="mainColor" fontSize="xl" mx="12px">{ABSENCE_HISTORY.checkBox}</Text>
+            <Checkbox onChange={()=>handleCheckBox()}/>
             </CheckboxGroup>
           </Flex>
         <ExtendedTableContainer overflowY="scroll" overflowX="hidden" my="3rem">
@@ -42,34 +54,34 @@ export default function History() {
             <Thead position="sticky" top={0}>
               <Tr bg="mainBackground">
                 <Th>
-                  <TextHeader>#</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.orderHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Овог</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.lastNameHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Нэр</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.firstNameHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Баг</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.teamHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Төрөл</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.typeHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Үүссэн огноо</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.createdDateHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Авсан цаг</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.hourHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Батлах менежер</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.managerNameHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Авсан огноо</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.dateHeader}</TextHeader>
                 </Th>
                 <Th>
-                  <TextHeader>Төлөв</TextHeader>
+                  <TextHeader>{ABSENCE_HISTORY.stateHeader}</TextHeader>
                 </Th>
                 <Th></Th>
               </Tr>
@@ -110,13 +122,14 @@ export default function History() {
                 absenceList.map((list: any, index: number) => {
                   return(
                     <Tr
+                    key={index+1}
                 borderBottom="2px solid #f3f6f9"
                 _last={{ borderBottom: "none" }}
               >
                 <Td>{index + 1}</Td>
-                <Td textAlign="center">{list.employeeId}</Td>
-                <Td textAlign="center">{list.employeeId}</Td>
-                <Td textAlign="center">{list.employeeId}</Td>
+                <Td textAlign="center">{list.employeeLastName}</Td>
+                <Td textAlign="center">{list.employeeFirstName}</Td>
+                <Td textAlign="center">{list.team}</Td>
                 <Td textAlign="center">{list.type.displayName}</Td>
                 <Td textAlign="center">{list.createdDate}</Td>
                 <Td textAlign="center">{list.hour}</Td>
@@ -124,7 +137,7 @@ export default function History() {
                 <Td textAlign="center">{list.date}</Td>
                 <Td textAlign="center">{list.state}</Td>
                 <Td textAlign="center">
-                  <DeleteRequest state={list.state}/>
+                  <DeleteRequest/>
                 </Td>
               </Tr>
                   )

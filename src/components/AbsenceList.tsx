@@ -14,6 +14,7 @@ import { ListInfo } from "../Data/globalData";
 import { ExtendedTableContainer, RequestButton,  SearchInput} from "../themes/customComponents"
 import DeleteRequest from './DeleteRequest';
 import useInfo from "../hooks/useInfo";
+import LeaveRequest from "./LeaveRequest";
 
 export default function AbsenceList() {
   const { lists, setLists, data} = useLists();
@@ -157,10 +158,12 @@ export default function AbsenceList() {
   return (
     <>
       <Flex flexDirection="column" w="85vw" px="2%" py="2.3%">
-        <Text fontSize="28px" as="b" color="personalHeader">
-          Чөлөөний түүх
-          <RequestButton fontSize="18px">Чөлөө авах</RequestButton>
-        </Text>
+        <Flex justifyContent="space-between">
+          <Text fontSize="28px" as="b" color="personalHeader">
+            Чөлөөний түүх
+          </Text>
+          <LeaveRequest />
+        </Flex>
       </Flex>
       <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem" overflowX="hidden">
         <Table size="sm" variant="collapse" position="relative">
@@ -271,7 +274,7 @@ export default function AbsenceList() {
                   <Td textAlign="center">{d.createdDate}</Td>
                   <Td textAlign="center">{d.hour}</Td>
                   <Td textAlign="center">{d.managerName}</Td>
-                  <Td textAlign="center">{d.modifiedDate}</Td>
+                  <Td textAlign="center">{d.date}</Td>
                   <Td textAlign="center">{d.state}</Td>
                   <Td><DeleteRequest state={d.state} id={d.id} remove={handleDelete}/></Td>
                 </Tr>
