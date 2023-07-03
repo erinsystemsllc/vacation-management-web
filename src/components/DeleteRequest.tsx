@@ -1,5 +1,5 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { DeletePop } from "../Data/globalData";
+import { DELETE_PROPS } from "../Data/globalData";
 import {
   Popover,
   PopoverTrigger,
@@ -16,47 +16,55 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { PopButton } from "../themes/customComponents";
-import useDeleteAbsence from "../hooks/useDeleteAbsence";
+import useDeleteAbsence from "../hooks/fetch/useDeleteAbsence";
 
 type DeleteRequestProps = {
-    state: string;
-    id: string;
-    remove: (id: string) => void;
-}
+  state: string;
+  id: string;
+  remove: (id: string) => void;
+};
 
-export default function DeleteRequest({ state, id, remove }: DeleteRequestProps) {
-    const toast = useToast()
+export default function DeleteRequest({
+  state,
+  id,
+  remove,
+}: DeleteRequestProps) {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {mutate, isSuccess, isError} = useDeleteAbsence();
+  const { mutate, isSuccess} = useDeleteAbsence();
   const handleClick = () => {
-    mutate(id)
-    if(isSuccess){
+    mutate(id);
+    if (isSuccess) {
       toast({
-        title: `${DeletePop.deleted}`,
-        status: 'success',
+        title: `${DELETE_PROPS.deleted}`,
+        status: "success",
         duration: 7000,
         isClosable: true,
-      })
+      });
     }
-  }
+  };
   return (
     <>
       <Popover>
         <PopoverTrigger>
-          {state == `${DeletePop.state}` ? <PopButton>
-            <BsThreeDotsVertical size={20} />
-          </PopButton> : <PopButton isDisabled>
-            <BsThreeDotsVertical size={20} />
-          </PopButton>}
+          {state == `${DELETE_PROPS.state}` ? (
+            <PopButton>
+              <BsThreeDotsVertical size={20} />
+            </PopButton>
+          ) : (
+            <PopButton isDisabled>
+              <BsThreeDotsVertical size={20} />
+            </PopButton>
+          )}
         </PopoverTrigger>
         <Portal>
           <PopoverContent w="fit-content">
             <PopoverArrow />
             <PopoverBody>
-              <PopButton onClick={onOpen}>{DeletePop.delete}</PopButton>
+              <PopButton onClick={onOpen}>{DELETE_PROPS.deleteBtn}</PopButton>
             </PopoverBody>
           </PopoverContent>
         </Portal>
@@ -64,20 +72,22 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{DeletePop.header}</ModalHeader>
+          <ModalHeader>{DELETE_PROPS.header}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            {DeletePop.content}
-          </ModalBody>
+          <ModalBody>{DELETE_PROPS.content}</ModalBody>
           <ModalFooter display="flex" w="100%" justifyContent="space-evenly">
             <Button
               colorScheme="red"
               mr={3}
-              onClick={()=>{onClose(); handleClick(); remove(id)}}
+              onClick={() => {
+                onClose();
+                handleClick();
+                remove(id);
+              }}
               bg="#DE5F55"
               color="white"
             >
-                {DeletePop.delete}
+              {DELETE_PROPS.deleteBtn}
             </Button>
             <Button
               bg="#6A994E"
@@ -85,7 +95,7 @@ export default function DeleteRequest({ state, id, remove }: DeleteRequestProps)
               onClick={onClose}
               colorScheme="green"
             >
-                {DeletePop.cancel}
+              {DELETE_PROPS.cancel}
             </Button>
           </ModalFooter>
         </ModalContent>

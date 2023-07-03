@@ -1,5 +1,5 @@
-import { User } from "../Data/globalData";
-import useGetAllUser from "../hooks/useGetAllUser";
+import {User} from '../Data/globalData'
+import useGetAllUser from "./fetch/useGetAllUser";
 
 export default function useSearchEmployee() {
   const { data, setLists, lists } = useGetAllUser();

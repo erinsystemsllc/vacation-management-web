@@ -1,10 +1,9 @@
-// chack style
 import { Flex, Box, Text, InputRightElement } from "@chakra-ui/react";
 import { FormControl, InputGroup } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 import { useState } from "react";
-import useLoginForm from "../hooks/useLoginForm";
+import useLoginForm from "../hooks/fetch/useLoginForm";
 import { FormInput, Submit, Form } from "../themes/customComponents";
 
 import { LoginPage } from "../Data/globalData";

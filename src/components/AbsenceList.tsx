@@ -1,167 +1,35 @@
-import {
-  Flex,
-  Table,
-  Text,
-  Tr,
-  Thead,
-  Th,
-  Tbody,
-  Td,
-  
-} from "@chakra-ui/react";
-import useLists, { AbsenceList } from "../hooks/useLists";
+import { Flex, Table, Text, Tr, Thead, Th, Tbody, Td } from "@chakra-ui/react";
+import useLists, { AbsenceList } from "../hooks/fetch/useLists";
 import { ListInfo } from "../Data/globalData";
-import { ExtendedTableContainer, RequestButton,  SearchInput} from "../themes/customComponents"
-import DeleteRequest from './DeleteRequest';
-import useInfo from "../hooks/useInfo";
+import {
+  ExtendedTableContainer,
+  SearchInput,
+} from "../themes/customComponents";
+import DeleteRequest from "./DeleteRequest";
+import useInfo from "../hooks/fetch/useInfo";
+import LeaveRequest from "./LeaveRequest";
+import useInfoSearchFilter from "../hooks/useInfoSearchFilter";
 
 export default function AbsenceList() {
-  const { lists, setLists, data} = useLists();
-  const info  = useInfo();
+  const { setLists, revalidateLists } = useLists();
+  const info = useInfo();
+  const {
+    handleSearchState,
+    lists,
+    handleSearchModifiedDate,
+    handleSearchApprovedBy,
+    handleSearchHour,
+    handleSearchCreatedDate,
+    handleSearchType,
+  } = useInfoSearchFilter();
   const handleDelete = (id: string) => {
     setLists(lists.filter((list) => list.id !== id));
-  }
-  const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-
-    // zasna
-    const found = data.filter((list: AbsenceList) => {
-      if (info.lastName.toLowerCase().includes(value.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
   };
 
-  const handleSearchFirst = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueFirst = (event.target).value;
-// zasna
-    const found = data.filter((list: AbsenceList) => {
-      if (info.firstName.toLowerCase().includes(valueFirst.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (valueFirst === "") {
-      setLists(data.record.lists);
-    }
-  };
-// zasna
-  const handleSearchTeam = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueFirst = event.target.value;
-
-    const found = data.filter((list: AbsenceList) => {
-      if (info.team.toLowerCase().includes(valueFirst.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (valueFirst === "") {
-      setLists(data);
-    }
-  };
-
-  // 
-  const handleSearchType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-
-    const found = data.filter((list: AbsenceList) => {
-      if (list.type.displayName.toLowerCase().includes(value.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
-  };
-
-  const handleSearchCreatedDate = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value;
-
-    const found = data.filter((list: AbsenceList) => {
-      if (list.createdDate.toLowerCase().includes(value.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
-  };
-
-  const handleSearchHour = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const number = parseInt(value);
-    const found = data.filter((list: AbsenceList) => {
-      if (list.hour === number) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
-  };
-
-  const handleSearchApprovedBy = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value;
-
-    const found = data.filter((list: AbsenceList) => {
-      if (list.approvedBy.toLowerCase().includes(value.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
-  };
-
-  const handleSearchModifiedDate = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value;
-
-    const found = data.filter((list: AbsenceList) => {
-      if (list.modifiedDate.toLowerCase().includes(value.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
-  };
-
-  const handleSearchState = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-
-    const found = data.filter((list: AbsenceList) => {
-      if (list.state.toLowerCase().includes(value.toLowerCase())) {
-        return list;
-      }
-    });
-
-    setLists(found);
-    if (value === "") {
-      setLists(data);
-    }
+  const handleLeaveRequest = () => {
+    setTimeout(() => {
+      revalidateLists();
+    }, 100);
   };
   //render section
   return (
@@ -171,10 +39,16 @@ export default function AbsenceList() {
           <Text fontSize="28px" as="b" color="personalHeader">
             Чөлөөний түүх
           </Text>
-          <LeaveRequest />
+          <LeaveRequest onLeaveRequest={handleLeaveRequest} />
         </Flex>
       </Flex>
-      <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem" overflowX="hidden">
+      <ExtendedTableContainer
+        overflowY="scroll"
+        mx="2rem"
+        my="1rem"
+        overflowX="hidden"
+        mb="5rem"
+      >
         <Table size="sm" variant="collapse" position="relative">
           <Thead backgroundColor="#A7C957" position="sticky" top={0}>
             <Tr color="#16400C" fontSize="14px">
@@ -193,28 +67,13 @@ export default function AbsenceList() {
             <Tr>
               <Th></Th>
               <Th>
-                <SearchInput
-                  type="text"
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    handleSearchLast(event)
-                  }
-                />
+                <SearchInput type="text" />
               </Th>
               <Th>
-                <SearchInput
-                  type="text"
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    handleSearchFirst(event)
-                  }
-                />
+                <SearchInput type="text" />
               </Th>
               <Th>
-                <SearchInput
-                  type="text"
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    handleSearchTeam(event)
-                  }
-                />
+                <SearchInput type="text" />
               </Th>
               <Th>
                 <SearchInput
@@ -282,10 +141,16 @@ export default function AbsenceList() {
                   <Td textAlign="center">{d.type.displayName}</Td>
                   <Td textAlign="center">{d.createdDate}</Td>
                   <Td textAlign="center">{d.hour}</Td>
-                  <Td textAlign="center">{d.managerId}</Td>
-                  <Td textAlign="center">{d.modifiedDate}</Td>
+                  <Td textAlign="center">{d.managerName}</Td>
+                  <Td textAlign="center">{d.date}</Td>
                   <Td textAlign="center">{d.state}</Td>
-                  <Td><DeleteRequest state={d.state} id={d.id} remove={handleDelete}/></Td>
+                  <Td>
+                    <DeleteRequest
+                      state={d.state}
+                      id={d.id}
+                      remove={handleDelete}
+                    />
+                  </Td>
                 </Tr>
               );
             })}

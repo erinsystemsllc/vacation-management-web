@@ -1,7 +1,6 @@
 import { Flex, Table, Thead, Tbody, Tr, Th, Td, Text } from "@chakra-ui/react";
-import { EmployeeInfo } from "../Data/globalData";
+import { EmployeeInfo, User } from "../Data/globalData";
 import useSearchEmployee from "../hooks/useSearchEmployee";
-import {User} from '../Data/globalData'
 
 
 import {
@@ -10,10 +9,14 @@ import {
   ExtendedTableContainer,
 } from "../themes/customComponents";
 import React from "react";
+import DeleteRequest from '../components/DeleteRequest';
 
 export default function Info() {
 
   const {searchByLastName, searchByFirstName, searchByEmail,searchByRole, searchByPosition, searchByFirstWork, searchByTeam, lists} = useSearchEmployee();
+  const handleDelete = () => {
+    window.location.reload();
+  }
 
   return (
     <Flex direction="column" my="3rem" mx="3rem">
@@ -93,7 +96,7 @@ export default function Info() {
                   <Td textAlign="center">{user.position}</Td>
                   <Td textAlign="center">{user.firstWorkDay}</Td>
                   <Td textAlign="center">
-                    <MoreVert />
+                    <DeleteRequest state="null" id={user.id} remove={handleDelete}/>
                   </Td>
                 </Tr>
               );

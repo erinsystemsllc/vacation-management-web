@@ -1,3 +1,12 @@
+interface DeleteProps {
+    deleted: string,
+    deleteBtn: string,
+    cancel: string,
+    content: string,
+    header: string,
+    state: string,
+}
+
 export interface User {
     id: string,
     lastName: string,
@@ -70,14 +79,12 @@ interface Employee_Info{
 export interface RequestModel{
     error:"error" | "success" | "info" | "warning" | "loading" | undefined,
     success:"error" | "success" | "info" | "warning" | "loading" | undefined,
-    loginUrl:string,
     unsupportedError:string
 }
 
 export const LoginRequest : RequestModel = {
     error:"error",
     success:"success",
-    loginUrl:"http://localhost:8000/api/user/login",
     unsupportedError:"An error occurred"
 }
 
@@ -140,11 +147,97 @@ export const ListInfo: List_Info = {
     state: "Төлөв"
 }
 
-export const DeletePop: deletePop = {
+export const DELETE_PROPS: DeleteProps = {
     deleted: 'Амжилттай устлаа',
-    delete: 'Устгах',
+    deleteBtn: 'Устгах',
     state: "NEW",
     cancel: 'Болих',
     header: 'Чөлөөний хүсэлт устгах',
     content: 'Та энэхүү чөлөөний хүсэлтийг устгахдаа итгэлтэй байна уу? Уг үйлдэл нь буцаагдах боломжгүй тул сайтар шалгана уу.'
+}
+
+interface AbsenceHistory{
+    header: string,
+    checkBox: string,
+    orderHeader: string,
+    lastNameHeader: string,
+    firstNameHeader: string,
+    teamHeader: string,
+    typeHeader: string,
+    createdDateHeader: string,
+    hourHeader: string,
+    managerNameHeader: string,
+    dateHeader: string,
+    stateHeader: string,
+}
+
+export const ABSENCE_HISTORY : AbsenceHistory = {
+    header: "Чөлөөний түүх",
+    checkBox: "Бүх хүсэлтийг харах",
+    orderHeader: "#",
+    lastNameHeader: "Овог", 
+    firstNameHeader: "Нэр",
+    teamHeader: "Баг",
+    typeHeader: "Төрөл",
+    createdDateHeader: "Үүссэн огноо",
+    hourHeader: "Авсан цаг",
+    managerNameHeader: "Батлах менежер",
+    dateHeader: "Авсан огноо",
+    stateHeader: "Төлөв"
+}
+interface ApiUrl {
+    main: string,
+}
+
+export const API_URL : ApiUrl = {
+    main: "http://192.168.50.68:8000",
+
+}
+
+interface LeaveRequest {
+    header: string,
+    leaveType: string,
+    leaveTypePlaceholder: string,
+    leaveDate: string,
+    leaveHour: string,
+    leaveRequestManager: string,
+    leaveRequestManagerPlaceholder: string,
+    leaveRequestBtn: string,
+    cancelbtn: string,
+    submitBtn: string,
+}
+
+export const LEAVE_REQUEST : LeaveRequest = {
+    header: "Чөлөөний хүсэлт",
+    leaveType: "Чөлөөний төрөл:",
+    leaveTypePlaceholder: "Чөлөөний төрөл сонгоно уу!",
+    leaveDate: "Чөлөө авах огноо:",
+    leaveHour: "Чөлөө авах цаг:",
+    leaveRequestManager: "Чөлөөний хүсэлт илгээх менежер:",
+    leaveRequestManagerPlaceholder: "Менежер сонгоно уу!",
+    leaveRequestBtn: "Чөлөө авах",
+    cancelbtn: "Болих",
+    submitBtn: "Илгээх",
+}
+
+interface LeaveResponse {
+    onSuccess: {
+        title: string,
+        description: string,
+    },
+    onError: {
+        title: string,
+        description: string,
+    }
+}
+
+export const LEAVE_RESPONSE : LeaveResponse = {
+    onSuccess: {
+        title: "Aмжилттай хадгалагдлаа.",
+        description: "Чөлөөний хүсэлт илгээгдсэн.",
+    },
+    onError: {
+        title: "Амжилтгүй",
+        description: "Хүсэлт илгээгдсэнгүй.",
+    }
 }

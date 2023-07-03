@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import useInfo from '../hooks/useInfo'
+import useInfo from '../hooks/fetch/useInfo'
 import { PersonalInfo } from "../Data/globalData";
 
 export default function Personal() {
