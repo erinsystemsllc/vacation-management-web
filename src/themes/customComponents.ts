@@ -90,16 +90,54 @@ export const InputStyle = chakra(Input, {
   },
 });
 
+
+export const SearchInput = chakra(Input, {
+    baseStyle: {
+        bg: "white",
+    }
+})
+
 export const ExtendedTableContainer = chakra(TableContainer, {
-  baseStyle: {
-    my: "2rem",
-    border: "none",
-    "&::-webkit-scrollbar": {
-      width: "6px",
-      backgroundColor: `rgba(0, 0, 0, 0.05)`,
+    baseStyle: {
+      mt: "1rem",
+      border: "none",
+      "&::-webkit-scrollbar": {
+        width: "6px",
+        backgroundColor: `rgba(0, 0, 0, 0.05)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#a7c957",
+      },
+      w: "95%",
+      position: "relative",
+      bottom: "25px"
     },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "#a7c957",
-    },
-  },
-});
+  });
+
+  export const RequestButton = chakra(Button, {
+    baseStyle: {
+        bg: "#6A994E",
+        color: "#FFFFFF",
+        w: "140px",
+        h: "45px",
+        borderRadius: "15px",
+        position: "relative",
+        left: "795px",
+        bottom: "3px"
+    }
+  })
+
+  export const PopButton = chakra(Button, {
+    baseStyle: {
+      bg: "inherit",
+      _hover: {
+        bg: "inherit"
+      },
+      _disabled: {
+        bg: "inherit",
+        _hover: {
+          bg: "inherit"
+        }
+      }
+    }
+  })
