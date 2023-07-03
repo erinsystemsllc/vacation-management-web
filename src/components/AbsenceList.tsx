@@ -22,7 +22,7 @@ export default function AbsenceList() {
     setLists(lists.filter((list) => list.id !== id));
   }
   const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target).value;
+    const value = event.target.value;
 
     // zasna
     const found = data.filter((list: AbsenceList) => {
@@ -53,7 +53,7 @@ export default function AbsenceList() {
   };
 // zasna
   const handleSearchTeam = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueFirst = (event.target).value;
+    const valueFirst = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
       if (info.team.toLowerCase().includes(valueFirst.toLowerCase())) {
@@ -69,7 +69,7 @@ export default function AbsenceList() {
 
   // 
   const handleSearchType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target).value;
+    const value = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.type.displayName.toLowerCase().includes(value.toLowerCase())) {
@@ -83,8 +83,10 @@ export default function AbsenceList() {
     }
   };
 
-  const handleSearchCreatedDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target).value;
+  const handleSearchCreatedDate = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.createdDate.toLowerCase().includes(value.toLowerCase())) {
@@ -99,8 +101,8 @@ export default function AbsenceList() {
   };
 
   const handleSearchHour = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target).value;
-    const number = parseInt(value)
+    const value = event.target.value;
+    const number = parseInt(value);
     const found = data.filter((list: AbsenceList) => {
       if (list.hour === number) {
         return list;
@@ -113,8 +115,10 @@ export default function AbsenceList() {
     }
   };
 
-  const handleSearchApprovedBy = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target).value;
+  const handleSearchApprovedBy = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.approvedBy.toLowerCase().includes(value.toLowerCase())) {
@@ -128,8 +132,10 @@ export default function AbsenceList() {
     }
   };
 
-  const handleSearchModifiedDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = (event.target).value;
+  const handleSearchModifiedDate = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.modifiedDate.toLowerCase().includes(value.toLowerCase())) {
@@ -144,7 +150,7 @@ export default function AbsenceList() {
   };
 
   const handleSearchState = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value= (event.target).value;
+    const value = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
       if (list.state.toLowerCase().includes(value.toLowerCase())) {
@@ -161,14 +167,16 @@ export default function AbsenceList() {
   return (
     <>
       <Flex flexDirection="column" w="85vw" px="2%" py="2.3%">
-        <Text fontSize="28px" as="b" color="personalHeader">
-          Чөлөөний түүх
-          <RequestButton fontSize="18px">Чөлөө авах</RequestButton>
-        </Text>
+        <Flex justifyContent="space-between">
+          <Text fontSize="28px" as="b" color="personalHeader">
+            Чөлөөний түүх
+          </Text>
+          <LeaveRequest />
+        </Flex>
       </Flex>
       <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem" overflowX="hidden">
         <Table size="sm" variant="collapse" position="relative">
-          <Thead backgroundColor="#A7C957" position='sticky' top={0}>
+          <Thead backgroundColor="#A7C957" position="sticky" top={0}>
             <Tr color="#16400C" fontSize="14px">
               <Th>{ListInfo.Num}</Th>
               <Th>{ListInfo.lastName}</Th>
@@ -280,7 +288,7 @@ export default function AbsenceList() {
                   <Td><DeleteRequest state={d.state} id={d.id} remove={handleDelete}/></Td>
                 </Tr>
               );
-            })} 
+            })}
           </Tbody>
         </Table>
       </ExtendedTableContainer>

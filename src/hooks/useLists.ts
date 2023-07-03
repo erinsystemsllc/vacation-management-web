@@ -35,5 +35,5 @@ export default function useLists() {
       return data;
     },
   });
-  return { setLists, data, lists};
+  return { setLists, data, lists };
 }
