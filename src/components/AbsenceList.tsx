@@ -1,22 +1,32 @@
-import { Flex, Table, Text, Tr, Thead, Th, Tbody, Td } from "@chakra-ui/react";
+import {
+  Flex,
+  Table,
+  Text,
+  Tr,
+  Thead,
+  Th,
+  Tbody,
+  Td,
+  
+} from "@chakra-ui/react";
 import useLists, { AbsenceList } from "../hooks/useLists";
 import { ListInfo } from "../Data/globalData";
-import {
-  ExtendedTableContainer,
-  RequestButton,
-  SearchInput,
-} from "../themes/customComponents";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import LeaveRequest from "./LeaveRequest";
+import { ExtendedTableContainer, RequestButton,  SearchInput} from "../themes/customComponents"
+import DeleteRequest from './DeleteRequest';
+import useInfo from "../hooks/useInfo";
 
 export default function AbsenceList() {
-  const { lists, setLists, data } = useLists();
-
+  const { lists, setLists, data} = useLists();
+  const info  = useInfo();
+  const handleDelete = (id: string) => {
+    setLists(lists.filter((list) => list.id !== id));
+  }
   const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
+    // zasna
     const found = data.filter((list: AbsenceList) => {
-      if (list.lastName.toLowerCase().includes(value.toLowerCase())) {
+      if (info.lastName.toLowerCase().includes(value.toLowerCase())) {
         return list;
       }
     });
@@ -28,10 +38,10 @@ export default function AbsenceList() {
   };
 
   const handleSearchFirst = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueFirst = event.target.value;
-
+    const valueFirst = (event.target).value;
+// zasna
     const found = data.filter((list: AbsenceList) => {
-      if (list.firstName.toLowerCase().includes(valueFirst.toLowerCase())) {
+      if (info.firstName.toLowerCase().includes(valueFirst.toLowerCase())) {
         return list;
       }
     });
@@ -41,12 +51,12 @@ export default function AbsenceList() {
       setLists(data.record.lists);
     }
   };
-
+// zasna
   const handleSearchTeam = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valueFirst = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
-      if (list.team.toLowerCase().includes(valueFirst.toLowerCase())) {
+      if (info.team.toLowerCase().includes(valueFirst.toLowerCase())) {
         return list;
       }
     });
@@ -57,11 +67,12 @@ export default function AbsenceList() {
     }
   };
 
+  // 
   const handleSearchType = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
     const found = data.filter((list: AbsenceList) => {
-      if (list.leaveType.toLowerCase().includes(value.toLowerCase())) {
+      if (list.type.displayName.toLowerCase().includes(value.toLowerCase())) {
         return list;
       }
     });
@@ -93,7 +104,7 @@ export default function AbsenceList() {
     const value = event.target.value;
     const number = parseInt(value);
     const found = data.filter((list: AbsenceList) => {
-      if (list.leaveHour === number) {
+      if (list.hour === number) {
         return list;
       }
     });
@@ -152,7 +163,6 @@ export default function AbsenceList() {
       setLists(data);
     }
   };
-
   //render section
   return (
     <>
@@ -164,7 +174,7 @@ export default function AbsenceList() {
           <LeaveRequest />
         </Flex>
       </Flex>
-      <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem">
+      <ExtendedTableContainer overflowY="scroll" mx="2rem" my="1rem" overflowX="hidden">
         <Table size="sm" variant="collapse" position="relative">
           <Thead backgroundColor="#A7C957" position="sticky" top={0}>
             <Tr color="#16400C" fontSize="14px">
@@ -266,18 +276,16 @@ export default function AbsenceList() {
                   key={i}
                 >
                   <Td>{i + 1}</Td>
-                  <Td textAlign="center">{d.lastName}</Td>
-                  <Td textAlign="center">{d.firstName}</Td>
-                  <Td textAlign="center">{d.team}</Td>
-                  <Td textAlign="center">{d.leaveType}</Td>
+                  <Td textAlign="center">{info?.lastName}</Td>
+                  <Td textAlign="center">{info?.firstName}</Td>
+                  <Td textAlign="center">{info?.team}</Td>
+                  <Td textAlign="center">{d.type.displayName}</Td>
                   <Td textAlign="center">{d.createdDate}</Td>
-                  <Td textAlign="center">{d.leaveHour}</Td>
-                  <Td textAlign="center">{d.approvedBy}</Td>
+                  <Td textAlign="center">{d.hour}</Td>
+                  <Td textAlign="center">{d.managerId}</Td>
                   <Td textAlign="center">{d.modifiedDate}</Td>
                   <Td textAlign="center">{d.state}</Td>
-                  <Td>
-                    <BsThreeDotsVertical size={20} />
-                  </Td>
+                  <Td><DeleteRequest state={d.state} id={d.id} remove={handleDelete}/></Td>
                 </Tr>
               );
             })}

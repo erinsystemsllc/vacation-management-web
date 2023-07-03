@@ -6,7 +6,7 @@ import { SideButton } from "./SideButton";
 export default function Sidebar() {
   const info = useInfo();
   return (
-    <Flex direction="column" w="12.5vw" h="100%">
+    <Flex direction="column" w="15rem" h="100%">
       <SideButton value={SideTitles.first.title} url={SideTitles.first.path} />
       {info?.role === "Менежер" ? (
         <>

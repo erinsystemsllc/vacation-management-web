@@ -20,7 +20,7 @@ export default function Info() {
       <Text color="personalHeader" fontSize="3xl" fontWeight="bold">
         {EmployeeInfo.header}
       </Text>
-      <ExtendedTableContainer overflowY="scroll">
+      <ExtendedTableContainer overflowY="scroll" my="3rem">
         <Table size="sm" variant="collapse" position="relative">
           <Thead position="sticky" top={0}>
             <Tr bg="mainBackground">
@@ -88,9 +88,9 @@ export default function Info() {
                   <Td textAlign="center">{user.lastName}</Td>
                   <Td textAlign="center">{user.firstName}</Td>
                   <Td textAlign="center">{user.email}</Td>
-                  <Td>{user.role}</Td>
+                  <Td textAlign="center">{user.role}</Td>
                   <Td textAlign="center">{user.team}</Td>
-                  <Td>{user.position}</Td>
+                  <Td textAlign="center">{user.position}</Td>
                   <Td textAlign="center">{user.firstWorkDay}</Td>
                   <Td textAlign="center">
                     <MoreVert />
