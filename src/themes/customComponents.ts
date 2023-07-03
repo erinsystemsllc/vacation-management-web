@@ -59,13 +59,13 @@ export const Logout = chakra(MenuList, {
 });
 
 export const HeaderContainer = chakra(Flex, {
-    baseStyle: {
-        w: "100%",
-        border: "1px solid #f2f2f2",
-        align: "center",
-        px: "2rem",
-    }
-})
+  baseStyle: {
+    w: "100%",
+    border: "1px solid #f2f2f2",
+    align: "center",
+    px: "2rem",
+  },
+});
 
 export const SideBtn = chakra(Button, {
   baseStyle: {
@@ -90,37 +90,16 @@ export const InputStyle = chakra(Input, {
   },
 });
 
-
-export const SearchInput = chakra(Input, {
-    baseStyle: {
-        bg: "white",
-    }
-})
-
-export const RequestButton = chakra(Button, {
+export const ExtendedTableContainer = chakra(TableContainer, {
   baseStyle: {
-      bg: "#6A994E",
-      color: "#FFFFFF",
-      w: "140px",
-      h: "45px",
-      borderRadius: "15px",
-      position: "relative",
-      left: "795px",
-      bottom: "3px"
-  }
-})
-
-  export const PopButton = chakra(Button, {
-    baseStyle: {
-      bg: "inherit",
-      _hover: {
-        bg: "inherit"
-      },
-      _disabled: {
-        bg: "inherit",
-        _hover: {
-          bg: "inherit"
-        }
-      }
-    }
-  })
+    my: "2rem",
+    border: "none",
+    "&::-webkit-scrollbar": {
+      width: "6px",
+      backgroundColor: `rgba(0, 0, 0, 0.05)`,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#a7c957",
+    },
+  },
+});
