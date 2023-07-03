@@ -2,7 +2,7 @@ import { Flex, Table, Text, Tr, Thead, Th, Tbody, Td } from "@chakra-ui/react";
 import useLists, { AbsenceList } from "../hooks/fetch/useLists";
 import { ListInfo } from "../Data/globalData";
 import {
-  exten
+  ExtendedTableContainer,
   SearchInput,
 } from "../themes/customComponents";
 import DeleteRequest from "./DeleteRequest";
