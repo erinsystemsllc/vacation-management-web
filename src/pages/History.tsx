@@ -21,17 +21,38 @@ import { ABSENCE_HISTORY } from "../Data/globalData";
 import { useState } from "react";
 import useHistorySearchFilter from "../hooks/useHistorySearchFilter";
 
-export default function History() {
 
+export default function History() {
+  interface AbsenceList{
+    id: string,
+    date: string,
+    employeeId: string,
+    employeeFirstName: string,
+    employeeLastName: string,
+    type: {
+      displayName: string,
+      maxHour: string,
+      typeName: string,
+    }
+    managerId: string,
+    managerName: string,
+    modifiedDate: string,
+    state: string,
+    team: string,
+    hour: number
+    createdDate: string,
+  }
+  
   const [isChecked, setIsChecked] = useState(false)
   const {revalidateLists} = useGetAbsenceHistory({isChecked});
   const {handleSearchState, absenceList, handleSearchModifiedDate, handleSearchApprovedBy, handleSearchHour, handleSearchCreatedDate, handleSearchType, handleSearchTeam, handleSearchFirst, handleSearchLast} = useHistorySearchFilter({isChecked});
-
+  
   const handleCheckBox = () => {
     setIsChecked(!isChecked)
     revalidateLists();
   }
-
+  
+  
   const handleDelete = () => {
     // todo delete request
   }
@@ -121,7 +142,7 @@ export default function History() {
             </Thead>
             <Tbody>
               {
-                absenceList.map((list: any, index: number) => {
+                absenceList.map((list: AbsenceList, index: number) => {
                   return(
                     <Tr
                     key={index+1}
