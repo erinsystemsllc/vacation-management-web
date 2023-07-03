@@ -2,8 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { API_URL, User } from "../../Data/globalData";
 
-
-
 export default function useGetAllUser() {
     const [lists, setLists] = useState<User[]>([])
     const {data, isStale} = useQuery({
@@ -16,5 +14,5 @@ export default function useGetAllUser() {
         }
     })
 
-        return {data, setLists, lists, isStale}
+  return { data, setLists, lists, isStale };
 }

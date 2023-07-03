@@ -11,6 +11,15 @@ interface Profile{
     team: string,
     role: string,
 }
+export default interface LeaveRequest{
+    id?: any | null,
+    leaveType: string,
+    leaveHour: number,
+    requestDate: Date | null,
+    createdDate: Date | null,
+    approvedBy: string,
+}
+
 
 
 export default function useInfo() {

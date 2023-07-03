@@ -4,7 +4,6 @@ import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-// components
 import { Box } from "@chakra-ui/react";
 import Topbar from "./components/Topbar";
 import Home from "./pages/Home";
@@ -30,7 +29,7 @@ export default function App() {
 
   return (
     <Box w="100vw" h="100vh" overflow="hidden">
-      {pathname === "/login" ? null : token === null ? null : <Topbar />}
+      {pathname === "/login" ? null : token !== null ? null : <Topbar />}
       <Flex w="100%" h="100%">
         <Box>
           {pathname === "/login" ? null : token === null ? null : <Sidebar />}
@@ -39,7 +38,7 @@ export default function App() {
           <Route
             path="/"
             element={
-              token === null ? (
+              token !== null ? (
                 <Flex
                   w="100vw"
                   h="100vh"
