@@ -1,6 +1,6 @@
 import { Flex} from "@chakra-ui/react";
 import { SideTitles } from "../Data/globalData";
-import useInfo from "../hooks/useInfo";
+import useInfo from "../hooks/fetch/useInfo";
 import { SideButton } from "./SideButton";
 
 export default function Sidebar() {

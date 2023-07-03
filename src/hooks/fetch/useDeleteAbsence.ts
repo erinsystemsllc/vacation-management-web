@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { API_URL } from "../Data/globalData";
+import { API_URL } from "../../Data/globalData";
 
 export default function useDeleteAbsence() {
   const { mutate, isSuccess, isError } = useMutation({

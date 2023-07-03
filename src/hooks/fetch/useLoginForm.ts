@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import { API_URL, LoginRequest } from "../Data/globalData";
+import { API_URL, LoginRequest } from "../../Data/globalData";
 
 import { useMutation } from "@tanstack/react-query";
 

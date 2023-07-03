@@ -2,6 +2,7 @@ import { Spinner, Flex } from "@chakra-ui/react";
 
 import { Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 // components
 import { Box } from "@chakra-ui/react";
@@ -13,16 +14,17 @@ import Sidebar from "./components/Sidebar";
 import Info from "./pages/Info";
 
 export default function App() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
   const json = token ? JSON.parse(token) : null;
   const role = json?.role;
-
   useEffect(() => {
     if (token === null) {
+      queryClient.clear();
       navigate("/login");
     }
-  }, [token, navigate]);
+  }, [token, navigate, queryClient]);
 
   const { pathname } = useLocation();
 

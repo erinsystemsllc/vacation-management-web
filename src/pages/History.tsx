@@ -1,8 +1,6 @@
 import {
-  Box,
   Checkbox,
   Flex,
-  Heading,
   Table,
   Tbody,
   Td,
@@ -21,19 +19,21 @@ import DeleteRequest from "../components/DeleteRequest";
 import useGetAbsenceHistory from "../hooks/useGetAbsenceHistory";
 import { ABSENCE_HISTORY } from "../Data/globalData";
 import { useState } from "react";
+import useHistorySearchFilter from "../hooks/useHistorySearchFilter";
 
 export default function History() {
 
-  const {data, absenceList, setAbsenceLists, allData} = useGetAbsenceHistory();
   const [isChecked, setIsChecked] = useState(false)
+  const {revalidateLists} = useGetAbsenceHistory({isChecked});
+  const {handleSearchState, absenceList, handleSearchModifiedDate, handleSearchApprovedBy, handleSearchHour, handleSearchCreatedDate, handleSearchType, handleSearchTeam, handleSearchFirst, handleSearchLast} = useHistorySearchFilter({isChecked});
 
   const handleCheckBox = () => {
-    if(isChecked){
-      setAbsenceLists(data)
-    }else{
-      setAbsenceLists(allData)
-    }
     setIsChecked(!isChecked)
+    revalidateLists();
+  }
+
+  const handleDelete = () => {
+    // todo delete request
   }
 
 
@@ -44,7 +44,7 @@ export default function History() {
           {ABSENCE_HISTORY.header}
         </Text>
           <Flex justifyContent="end"  w="90%">
-            <CheckboxGroup border="1px solid green" rounded="lg" colorScheme="green" size="lg">
+            <CheckboxGroup colorScheme="green" size="lg">
             <Text color="mainColor" fontSize="xl" mx="12px">{ABSENCE_HISTORY.checkBox}</Text>
             <Checkbox onChange={()=>handleCheckBox()}/>
             </CheckboxGroup>
@@ -90,31 +90,31 @@ export default function History() {
               <Tr bg="mainBackground">
                 <Th></Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchLast(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchFirst(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchTeam(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchType(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchCreatedDate(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchHour(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchApprovedBy(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchModifiedDate(event)}/>
                 </Th>
                 <Th>
-                  <InputStyle />
+                  <InputStyle onChange={(event: React.ChangeEvent<HTMLInputElement>)=>handleSearchState(event)}/>
                 </Th>
                 <Th></Th>
               </Tr>
@@ -139,7 +139,7 @@ export default function History() {
                 <Td textAlign="center">{list.date}</Td>
                 <Td textAlign="center">{list.state}</Td>
                 <Td textAlign="center">
-                  <DeleteRequest/>
+                  <DeleteRequest state={"null"} id={"null"} remove={handleDelete}/>
                 </Td>
               </Tr>
                   )

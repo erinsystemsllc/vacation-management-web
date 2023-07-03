@@ -14,6 +14,9 @@ import DeleteRequest from '../components/DeleteRequest';
 export default function Info() {
 
   const {searchByLastName, searchByFirstName, searchByEmail,searchByRole, searchByPosition, searchByFirstWork, searchByTeam, lists} = useSearchEmployee();
+  const handleDelete = () => {
+    window.location.reload();
+  }
 
   return (
     <Flex direction="column" my="3rem" mx="3rem">
@@ -93,7 +96,7 @@ export default function Info() {
                   <Td textAlign="center">{user.position}</Td>
                   <Td textAlign="center">{user.firstWorkDay}</Td>
                   <Td textAlign="center">
-                    <DeleteRequest/>
+                    <DeleteRequest state="null" id={user.id} remove={handleDelete}/>
                   </Td>
                 </Tr>
               );

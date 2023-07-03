@@ -192,3 +192,51 @@ export const API_URL : ApiUrl = {
     main: "http://192.168.50.68:8000",
 
 }
+
+interface LeaveRequest {
+    header: string,
+    leaveType: string,
+    leaveTypePlaceholder: string,
+    leaveDate: string,
+    leaveHour: string,
+    leaveRequestManager: string,
+    leaveRequestManagerPlaceholder: string,
+    leaveRequestBtn: string,
+    cancelbtn: string,
+    submitBtn: string,
+}
+
+export const LEAVE_REQUEST : LeaveRequest = {
+    header: "Чөлөөний хүсэлт",
+    leaveType: "Чөлөөний төрөл:",
+    leaveTypePlaceholder: "Чөлөөний төрөл сонгоно уу!",
+    leaveDate: "Чөлөө авах огноо:",
+    leaveHour: "Чөлөө авах цаг:",
+    leaveRequestManager: "Чөлөөний хүсэлт илгээх менежер:",
+    leaveRequestManagerPlaceholder: "Менежер сонгоно уу!",
+    leaveRequestBtn: "Чөлөө авах",
+    cancelbtn: "Болих",
+    submitBtn: "Илгээх",
+}
+
+interface LeaveResponse {
+    onSuccess: {
+        title: string,
+        description: string,
+    },
+    onError: {
+        title: string,
+        description: string,
+    }
+}
+
+export const LEAVE_RESPONSE : LeaveResponse = {
+    onSuccess: {
+        title: "Aмжилттай хадгалагдлаа.",
+        description: "Чөлөөний хүсэлт илгээгдсэн.",
+    },
+    onError: {
+        title: "Амжилтгүй",
+        description: "Хүсэлт илгээгдсэнгүй.",
+    }
+}

@@ -1,54 +1,9 @@
 import React from 'react'
-import useLists from './useLists';
+import useLists,{ AbsenceList } from './fetch/useLists';
 
-export default function useSearchFilter() {
+export default function useInfoSearchFilter() {
 
-  const { lists, setLists, data} = useLists();
-    
-
-    const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = (event.target).value;
-    
-        const found = data.filter((list: AbsenceList) => {
-          if (info.lastName.toLowerCase().includes(value.toLowerCase())) {
-            return list;
-          }
-        });
-    
-        setLists(found);
-        if (value === "") {
-          setLists(data);
-        }
-      };
-    
-      const handleSearchFirst = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const valueFirst = (event.target).value;
-        const found = data.filter((list: AbsenceList) => {
-          if (info.firstName.toLowerCase().includes(valueFirst.toLowerCase())) {
-            return list;
-          }
-        });
-    
-        setLists(found);
-        if (valueFirst === "") {
-          setLists(data.record.lists);
-        }
-      };
-      const handleSearchTeam = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const valueFirst = (event.target).value;
-    
-        const found = data.filter((list: AbsenceList) => {
-          if (info.team.toLowerCase().includes(valueFirst.toLowerCase())) {
-            return list;
-          }
-        });
-    
-        setLists(found);
-        if (valueFirst === "") {
-          setLists(data);
-        }
-      };
-    
+  const { setLists, data, lists} = useLists();
       const handleSearchType = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = (event.target).value;
     
@@ -98,7 +53,7 @@ export default function useSearchFilter() {
         const value = (event.target).value;
     
         const found = data.filter((list: AbsenceList) => {
-          if (list.approvedBy.toLowerCase().includes(value.toLowerCase())) {
+          if (list.managerName.toLowerCase().includes(value.toLowerCase())) {
             return list;
           }
         });
@@ -139,5 +94,5 @@ export default function useSearchFilter() {
         }
       };
 
-  return {handleSearchState, handleSearchModifiedDate, handleSearchApprovedBy, handleSearchHour, handleSearchCreatedDate, handleSearchType, handleSearchTeam, handleSearchFirst, handleSearchLast}
+  return {handleSearchState, handleSearchModifiedDate, handleSearchApprovedBy, handleSearchHour, handleSearchCreatedDate, handleSearchType, lists}
 }

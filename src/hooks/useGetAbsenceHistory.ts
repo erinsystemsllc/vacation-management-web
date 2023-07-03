@@ -1,28 +1,37 @@
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { API_URL } from '../Data/globalData';
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { API_URL } from "../Data/globalData";
 
-export default function useGetAbsenceHistory() {
-    const [absenceList, setAbsenceLists] = useState([]);
-    const info = JSON.parse(sessionStorage.getItem('token'));
-    const {data} = useQuery({
-        queryKey: ['AbsenceHistory'],
-        queryFn: async() => {
-            const response = await fetch(`${API_URL.main}/api/absence/?userId=${info?.id}`);
-            const data = await response.json();
-            setAbsenceLists(data);
-            return data;
-        } 
-    })
+interface Props {
+  isChecked: boolean;
+}
 
-    const {data: allData} = useQuery({
-        queryKey: ['AbsenceAllHistory'],
-        queryFn: async() => {
-            const response = await fetch(`${API_URL.main}/api/absence/?userId=`);
-            const data = await response.json();
-            return data;
-        } 
-    })
+export default function useGetAbsenceHistory({ isChecked }: Props) {
+  const [absenceList, setAbsenceLists] = useState([]);
+  const token = sessionStorage.getItem("token");
+  const info = token ? JSON.parse(token) : null;
+  const { data, refetch, isFetched } = useQuery({
+    queryKey: ["AbsenceHistory"],
+    queryFn: async () => {
+      const response = await fetch(
+        `${API_URL.main}/api/absence/?userId=${!isChecked ? info.id : ""}`
+      );
+      const data = await response.json();
+      return data;
+    },
+    staleTime: 1000 * 60 * 3,
+  });
 
-  return {data, absenceList, setAbsenceLists, allData};
+  useEffect(() => {
+    refetch();
+    if (isFetched) {
+      setAbsenceLists(data);
+    }
+  }, [isFetched, data, setAbsenceLists, refetch, isChecked]);
+
+  const revalidateLists = async () => {
+    await refetch();
+  };
+
+  return { data, absenceList, setAbsenceLists, revalidateLists };
 }

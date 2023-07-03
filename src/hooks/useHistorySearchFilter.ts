@@ -1,10 +1,12 @@
 import useGetAbsenceHistory from './useGetAbsenceHistory';
-import { useState } from 'react';
-import AbsenceList from '../components/AbsenceList';
+import { AbsenceList } from './fetch/useLists';
 
-export default function useHistorySearchFilter(temp) {
-  const {data, allData} = useGetAbsenceHistory();
-  const [absenceLists, setAbsenceLists] = useState(data);    
+interface Props {
+  isChecked: boolean;
+}
+
+export default function useHistorySearchFilter({isChecked}: Props) {
+  const {data, absenceList, setAbsenceLists} = useGetAbsenceHistory({isChecked});
 
     const handleSearchLast = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = (event.target).value;
@@ -138,6 +140,5 @@ export default function useHistorySearchFilter(temp) {
           setAbsenceLists(data);
         }
       };
-
-  return {handleSearchState, filtered : absenceLists, handleSearchModifiedDate, handleSearchApprovedBy, handleSearchHour, handleSearchCreatedDate, handleSearchType, handleSearchTeam, handleSearchFirst, handleSearchLast, absenceLists}
+  return {handleSearchState, absenceList, handleSearchModifiedDate, handleSearchApprovedBy, handleSearchHour, handleSearchCreatedDate, handleSearchType, handleSearchTeam, handleSearchFirst, handleSearchLast}
 }

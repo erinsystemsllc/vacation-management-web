@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { API_URL } from "../Data/globalData";
+import { API_URL } from "../../Data/globalData";
 
 export interface AbsenceList {
   id: string
@@ -22,8 +22,6 @@ export interface AbsenceList {
   }
 }
 
-// managerId bish manager name avmaar bna
-
 export default function useLists() {
   const token= sessionStorage.getItem("token");
   const parsedToken = token ? JSON.parse(token) : null;
@@ -36,12 +34,15 @@ export default function useLists() {
         `${API_URL.main}/api/absence/user/?employeeId=${id}`
       );
       const data = await response.json();
-      setLists(data);
       return data;
     },
   });
-
-  // Function to manually trigger revalidation
+  useEffect(()=>{
+    if(data){
+      setLists(data)
+    }
+  }, [data, setLists])
+  
   const revalidateLists = async () => {
     await refetch();
   };
